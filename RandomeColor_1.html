@@ -1,0 +1,57 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Randome color</title>
+</head>
+<style>
+#space{
+	min-height:100%;
+	min-width: 100%;
+}
+</style>
+<body>
+<div id="space"></div>
+
+<script type="text/javascript">
+
+function addElement(){
+
+	var w = window.innerWidth - 10;
+	var h = window.innerHeight - 10;
+
+	var element = document.createElement("DIV");
+	element.style.background = getRandomColor();
+	element.style.width = "50px";
+	element.style.height = "50px";
+	element.style.position = "absolute";
+	element.style.left = getRandomNumber(0, w) + "px";
+  	element.style.top = getRandomNumber(0, h) + "px";
+
+	document.getElementById("space").appendChild(element);
+
+}
+
+function getRandomColor(){
+	
+	var r = getRandomNumber(0, 255); 
+	var g = getRandomNumber(0, 255);
+	var b = getRandomNumber(0, 255);
+
+	return 'rgb('+ r +','+ g +','+ b +')';
+}
+
+function getRandomNumber(from, to){
+
+	return Math.floor(Math.random() * to) + from;
+
+}
+
+for(var i = 0; i < 10; i++){
+
+	setInterval(addElement, 2);
+
+}
+
+</script>
+</body>
+</html> 

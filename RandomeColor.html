@@ -1,0 +1,304 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Randome color</title>
+</head>
+<style>
+html {height:100%} 
+body {min-height:100%}
+input[type=text] {width: 30px;}
+#space{
+min-height:100%
+}
+#control{
+float:right;
+width: 30%;
+}
+</style>
+<body>
+<div id="space"></div>
+<div id="control">
+	<button onClick="run();" >Run</button>
+	<button onClick="clearAllIntervals();" >Clear All Intervals</button>
+	<br/>
+	<button onClick="clearScreen();" >Clear Screen</button>
+	<label id="elementCounter"></label>
+</div>
+<script type="text/javascript">
+
+var countElements = 0;
+var elements = [];
+var lastId = 0 ;
+var intervalTime = 300;
+var elDinamincMaxWidth = 300;
+var elDinamincMaxHeight = 300;
+var elDinamincMaxTop = 400;
+var elDinamincMaxLeft = 400;
+var intervals = [];
+
+
+function getNewId(){
+
+	var result = lastId;
+	lastId ++;
+
+	return  result;
+}
+
+function createElement(){
+
+	time = getRandomNumber(1000, 6000); 
+
+	var element = document.createElement("DIV");
+	element.style.background = getRandomColor();
+//	element.style.width = document.getElementById("in_height").value + "px";
+//	element.style.height = document.getElementById("in_width").value + "px";
+	element.style.width = "10px";
+	element.style.height = "10px";
+	element.style.position = "absolute";
+//	element.style.left = event.clientX + "px";
+//  	element.style.top = event.clientY + "px";
+	element.style.left = "100px";
+  	element.style.top = "100px";
+
+
+	//element.style.float = "left";
+
+	element.id = "el_" + getNewId();
+
+	//validateXPosition(element);
+
+	elements.push(element);
+
+	
+
+	updateCounterValue();
+
+}
+
+function updateCounterValue(){
+
+	countElements ++;
+	document.getElementById("elementCounter").innerHTML = countElements;
+
+}
+
+
+function validateXPosition(element){
+// reikia surasti kurie sutampa top 
+// surasti tuos kurie sutampa left
+// left surastas, perkelti left i left + width
+// surasti tuos kurie sutampa left 
+	
+	var topMatchs = [];
+
+	for(var i = 0; i < elements.length; i++){
+		
+		var result = false;		
+			
+		var left = parseInt(elements[i].style.left.replace("px", ""));
+		var width = parseInt(elements[i].style.width.replace("px", ""));	
+		var height = parseInt(elements[i].style.height.replace("px", ""));
+		var top = parseInt(elements[i].style.top.replace("px", ""));	
+
+		var elTop = parseInt(element.style.top.replace("px", ""));				
+
+		if(elTop == top){
+	
+			result = true;			
+		} 
+
+		if(elTop == top - height){
+
+			result = true;
+
+		}
+		
+		if(elTop < top && elTop > top - height){
+
+			result = true;		
+
+		}
+
+		if(result == true){
+
+			topMatchs.push(element); 		
+
+		}
+	}
+	
+	if(topMatchs.length > 0){
+
+		for(var i = 0; i < topMatchs.length; i++){
+			
+			var result = false;		
+			
+			var left = parseInt(topMatchs[i].style.left.replace("px", ""));
+			var width = parseInt(topMatchs[i].style.width.replace("px", ""));	
+			var height = parseInt(topMatchs[i].style.height.replace("px", ""));
+			var top = parseInt(topMatchs[i].style.top.replace("px", ""));	
+
+			var elLeft = parseInt(element.style.left.replace("px", ""));				
+
+
+			if(elLeft >= left && elLeft <= left + width){
+			
+				element.style.left = left + width + "px";			
+						
+			}
+		}			
+	}
+
+	
+}
+
+
+function getRandomColor(){
+	
+	var r = getRandomNumber(0, 255); 
+	var g = getRandomNumber(0, 255);
+	var b = getRandomNumber(0, 255);
+
+	return 'rgb('+ r +','+ g +','+ b +')';
+}
+
+function printElements(){
+
+	var space = document.getElementById("space");
+
+	for(var i = 0; i < elements.length; i++){
+
+		space.appendChild(elements[i]);		
+	}	
+
+}
+
+function clearElements(){
+
+	elements = [];
+
+}
+
+function clearScreen(){
+
+	for(var i = 0; i < elements.length; i++){
+
+		document.getElementById(elements[i].id).remove();
+
+	}
+
+	clearElements();
+
+}
+
+
+function getRandomNumber(from, to){
+
+	return Math.floor(Math.random() * to) + from;
+
+}
+
+
+
+function setWidthToElements(){
+
+	for(var i = 0; i < elements.length; i++){
+
+		elements[i].style.width = getRandomNumber(1, elDinamincMaxWidth, 1) + "px";
+
+	}
+
+}
+
+function setHeightToElements(){
+
+	for(var i = 0; i < elements.length; i++){
+
+		elements[i].style.height = getRandomNumber(1, elDinamincMaxHeight) + "px";
+
+	}
+
+}
+
+function setTopToElements(){
+
+	for(var i = 0; i < elements.length; i++){
+
+		elements[i].style.top = getRandomNumber(0, elDinamincMaxTop) + "px";
+
+	}
+
+}
+
+function setLeftToElements(){
+
+	for(var i = 0; i < elements.length; i++){
+
+		elements[i].style.left = getRandomNumber(0, elDinamincMaxLeft) + "px";
+
+	}
+
+}
+
+function setColorToElements(){
+
+	for(var i = 0; i < elements.length; i++){
+
+		elements[i].style.background = getRandomColor();
+
+	}
+
+}
+
+function clearAllIntervals(){
+
+	for(var i = 0; i < intervals.length; i++){
+
+		window.clearInterval(intervals[i]);
+
+	}
+
+}
+
+function updateIntervalTime(){
+
+	if(countElements > 100){
+
+		elDinamincMaxWidth = 200;
+		elDinamincMaxHeight = 200;	
+
+	}
+	
+	if(countElements > 200){
+
+		elDinamincMaxWidth = 100;
+		elDinamincMaxHeight = 100;	
+
+	}
+
+}
+
+function run(){
+
+
+	intervals.push(setInterval(function(){ updateIntervalTime(); }, 2000));
+	intervals.push(setInterval(function(){ main(); }, 2000));
+	intervals.push(setInterval(function(){ setWidthToElements(); }, intervalTime));
+	intervals.push(setInterval(function(){ setColorToElements(); }, intervalTime));
+	intervals.push(setInterval(function(){ setHeightToElements(); }, intervalTime));
+	intervals.push(setInterval(function(){ setTopToElements(); }, intervalTime));
+	intervals.push(setInterval(function(){ setLeftToElements(); }, intervalTime));
+
+}
+
+function main(){
+
+	createElement();
+	printElements();
+
+}
+
+
+</script>
+</body>
+</html> 

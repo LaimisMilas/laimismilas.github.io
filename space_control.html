@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Randome color</title>
+</head>
+<style>
+#header{
+    height:100px;
+    min-width: 100%;
+    background-color:antiquewhite;
+}
+#log{
+    height:70px;
+    min-width: 100%;
+    background-color: aqua;    
+}
+
+#menu{
+    background-color: aquamarine;
+    height:30px;
+    min-width: 100%;
+}  
+#main{
+    min-width: 100%; 
+    height:800px;
+}       
+#main div{
+    float: left;   
+}    
+#space{
+	min-height:100%;
+	min-width: 80%;
+     background-color: bisque;
+}
+#settings{
+	min-height:100%;
+	min-width: 20%;
+     background-color: brown;
+}
+#settings ul li{
+    list-style-type: none;
+    margin-bottom: 2px;
+}
+#settings ul li label{
+    margin-left: 2px;
+} 
+#footer{
+ min-width: 100%;
+    float: right;
+    background-color: aqua
+}    
+</style>
+<body>
+<div id="header">
+    <div id="log"></div>
+    <div id="menu">
+        <a href="#">Home</a>
+        <a href="#">App</a>
+    </div>
+</div>    
+<div id="main">    
+    <div id="space"></div>
+    <div id="settings">
+        <ul>
+            <li><input type="text" id="i2" value="10" /><label>w</label></li>
+            <li><input type="text" id="i1" value="10" /><label>h</label></li>
+            <li><input type="text" id="i3" onchange="updateTimer(this)"/><label>i</label></li>
+            <li>
+                <input type="button" onclick="swich()" value="arc/rec" />
+                <input type="button" onclick="stopActions()" value="stop/start" />
+            </li>
+            <li>
+                <input type="color" id="icolor" />
+                <input type="button" onclick="setRandomeColor()" value="rando color" />
+            </li>
+        </ul>    
+    </div>  
+</div>
+<div id="footer"><span>Author:</span><span>LM</span></div>    
+<script type="text/javascript">
+    
+var actions = 1;
+var currentElement = 1; 
+var randomColor = 0;
+    
+ function setRandomeColor(){
+     
+    if(randomColor === 0){
+        
+       randomColor = 1;
+    } else {
+        
+        randomColor = 0; 
+    }
+}  
+    
+function stopActions(){
+    
+   if(actions === 0){
+        
+       actions = 1;
+    } else {
+        
+        actions = 0;   
+    }
+}    
+    
+function swich(){
+   
+    if(currentElement === 1){
+        
+       currentElement = 2; 
+    } else {
+        
+        currentElement = 1; 
+    }
+}
+    
+function getColor(){
+    
+    var result = 0;
+    
+    if(randomColor === 0){
+        
+       result = getValue("icolor");
+    }else{
+        
+      result =  getRandomColor(); 
+    }
+    return  result;
+}
+    
+function getSpace(m){
+    
+    var result = 0;
+    
+    var space = document.getElementById("space");
+    
+    if(m === "top"){
+       
+        result = space.clientHeight;
+        
+    } else {
+        
+        result = space.clientWidth;
+        
+    }
+    
+    return result;
+}    
+    
+function addElement(){
+    
+    var space = document.getElementById("space");
+    
+	var element = document.createElement("DIV");
+    element.style.background = getColor();
+	element.style.width = getValue("i2") + "px";
+	element.style.height = getValue("i1") + "px";
+	element.style.position = "absolute";
+    
+    var top = getRandomNumber(space.offsetTop, space.offsetTop + space.clientHeight - 120);
+ 	var left = getRandomNumber(space.offsetLeft, space.offsetLeft + space.clientWidth);
+    
+    var w = space.offsetTop + space.clientHeight;
+    var t = top + Number(getValue("i1"));
+    
+    if(t >= w){
+        
+        top = space.offsetTop - space.clientHeight;
+    }
+    
+    var w1 = space.offsetLeft + space.clientWidth;
+    var t1 = left + Number(getValue("i2"));
+    
+    if(t1 >= w1){
+        
+        left = space.offsetLeft + space.clientWidth - getValue("i2");
+    }
+
+	element.style.left = left + "px";
+  	element.style.top = top + "px";
+
+	document.getElementById("space").appendChild(element);
+}
+    
+function creatCanvas(){
+    
+    var canvas = document.createElement("canvas");
+	canvas.style.width = getValue("i1") * 35  + "px";
+	canvas.style.height = getValue("i2") * 20 + "px";
+	canvas.style.position = "absolute";
+	canvas.style.left = getRandomNumber(space.clientLeft, space.clientLeft + space.clientWidth) + "px";
+  	canvas.style.top = getRandomNumber(space.offsetTop, space.offsetTop + space.clientHeight) + "px";
+    
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = getColor();
+    ctx.beginPath();
+    ctx.arc(10, 10, getValue("i2"), 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.fill();
+    
+    document.getElementById("space").appendChild(canvas);
+}
+    
+function getValue(id){
+    
+  var el = document.getElementById(id);
+  return el.value;
+}
+function getRandomColor(){
+	
+	var r = getRandomNumber(0, 255); 
+	var g = getRandomNumber(0, 255);
+	var b = getRandomNumber(0, 255);
+	return 'rgb('+ r +','+ g +','+ b +')';
+}
+  
+function getRandomNumber(from, to){
+	return Math.floor(Math.random() * to) + from;
+}
+function createObject(){
+    
+    if(actions === 0 ){
+        
+        if(currentElement === 1){
+            addElement();
+        } else {
+            creatCanvas();
+        }
+    }
+}
+    
+function updateTimer(el){
+    clearInterval(timer);
+    timer = setInterval(createObject, el.value);    
+} 
+    
+var timer = setInterval(createObject, 20);
+    
+</script>
+</body>
+</html> 

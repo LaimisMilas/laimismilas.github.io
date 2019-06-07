@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Console Logs</title>
+</head>
+<body>
+
+<div id="controller">
+    <input type="text" id="messageText"/>
+    <input type="button" onclick="writeToLogScreen()" value="Push">
+</div>
+
+<div id="consoleLog">
+</div>
+<script>
+
+    function getValue(id) {
+
+        return document.getElementById(id).value;
+    }
+
+    function writeToLogScreen()
+    {
+
+        let pre = document.createElement("div");
+
+        pre.innerText = getValue("messageText");
+
+        insertBefore("consoleLog", pre);
+
+    }
+
+    function insertAfter(id, el){
+
+        document.getElementById(id).insertBefore(el, document.getElementById(id).lastChild);
+
+    }
+
+    function insertBefore(id, el){
+
+        document.getElementById(id).insertBefore(el, document.getElementById(id).childNodes[2]);
+
+    }
+
+</script>
+</body>
+</html>

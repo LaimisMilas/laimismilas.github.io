@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="./myscripts.js"></script>
+<script>
+
+var sTimeStart = "00:00";
+var sTimeEnd = "00:00";
+
+var meterStart = 0;
+var meterEnd = 0;
+
+var kwhDiff = 0;
+var minDiff = 0;
+
+function convertKwh(){
+
+	var kwh = getValue("kwatt_1");
+	var minutes = getValue("minutes_2");
+
+	var result = kwhToWatts(kwh, minutes);
+
+	result = result + " watts";
+
+	printToElement("result_23", result);
+}
+
+function convertWattsToKwh(){
+
+	var watts = getValue("watt_3");
+	var minutes = getValue("minutes_1");
+
+	var result = wattsToKwh(watts, minutes);
+
+	printToElement("result_22", result);
+}
+
+// Kokiu galingumu buvo sildoma?
+function usedPower(){
+
+	init();
+
+	var result = kwhToWatts(kwhDiff, minDiff);
+
+	result = "Used power: " + toNumber(result, 2) + " watts";
+
+	printToElement("used_power", result); 
+
+}
+
+// Kiek laipsniu buvo pakelta temperatura?
+// Kiek litru vandens buvo pasildyta?
+
+function convertKwhToJoul(){
+
+	var kwh = getValue("kwatt_2");
+
+	var result = kwhToJoul(kwh);
+
+	result = result + " J";
+
+	printToElement("result_25", result);
+}
+
+function convertJoulToCal(){
+
+	var jouls = getValue("joul_1");
+
+	var result = joulsToCol(jouls);
+
+	result = result + " cal";
+
+	printToElement("result_24", result);
+}
+
+function calc(){
+	
+	init();
+
+	var result = kwhDiff + "kwh, " + minDiff + "min. ";
+
+	printToElement("result", result);
+ 	
+	var a = kwhToWatts(kwhDiff, minDiff);
+
+	a = wattsToKw(a);
+
+	var b = minutesToTime(minDiff);
+
+	result = a + "kw, " + b;
+	
+	printToElement("result_1", result);
+
+}
+
+function init(){
+
+	sTimeStart = getValue("time_1");
+	sTimeEnd = getValue("time_2");
+   
+	meterStart = getValue("watt_1");
+	meterEnd = getValue("watt_2");
+
+	kwhDiff = meterDiff(meterStart, meterEnd);
+    
+	minDiff = timeDiff(sTimeStart,sTimeEnd);
+
+}
+
+function kwhToJoul(kwh){
+
+	var constKwh = 3600000;
+
+	var result = kwh  * constKwh;
+
+	return toNumber(result, 2);
+}
+
+function joulsToCol(jouls){
+	//4.184J - 1 calorija
+	var j = 4.184; 
+	
+	var result = jouls/j;
+
+	return toNumber(result, 2);
+}
+
+
+function toNumber(value, prec){
+
+	var result = value.toPrecision(prec);
+
+	result = Number(result);
+	
+	return result;
+}
+
+function meterDiff(start, end){
+
+	var result = end - start;
+
+	return toNumber(result, 2);
+
+}
+
+function minutesToTime(minDiff){
+
+	var hh = Math.trunc(minDiff/60);
+	
+	var mm = minDiff % 60;
+
+	var result = hh + "val. "+ mm + "min. "; 
+
+	return result;
+
+}
+
+function wattsToKw(watts){
+
+	var result = watts / 1000;
+	
+	return toNumber(result, 2);
+
+}
+
+function wattsToKwh(watts, minutes){
+
+	var result = (watts * minutes) / 1000;
+
+	result = watts * minutes;
+
+	result = result / 60; 
+
+	result = result / 1000;
+
+	result = toNumber(result, 2);
+	
+	return result + " kwh";
+
+}
+
+function kwhToWatts(kwh, minutes){
+
+	var result = kwh * 1000;
+
+	result = result / minutes;
+
+	result = result * 60;
+
+	return toNumber(result, 2);
+
+}
+
+function timeDiff(start,end){
+
+	var minIn24h = 1440;	
+	var hStart = get(start, 0);
+	var hEnd = get(end, 0);
+
+	var result = 0;	
+
+	if(hStart <= hEnd){
+
+		result = usedMin(end) - usedMin(start)
+
+	}else if(hStart > hEnd){
+
+		result = (minIn24h - usedMin(start))	+ usedMin(end); 		
+
+	}
+
+	return result;
+}
+
+function usedMin(text){
+ 	  
+	var hh = get(text,0);
+	var mm = get(text,1);
+
+	var minutes = (60 * hh) + mm;
+
+	return minutes;
+}
+
+function get(text, index){
+
+	var result = text.split(':');
+
+	result = Number(result[index]); 
+	
+	return result;
+}
+
+</script>
+</head>
+<body>
+<div>
+	Kwh:<input id="kwatt_2" type="text" value="2000"/>
+	<br/>
+	<button onclick="convertKwhToJoul()">convert kwh to joul</button>
+	<p id="result_25"></p>
+<div/>
+<div>
+	Joul:<input id="joul_1" type="text" value="20000"/>
+	<br/>
+	<button onclick="convertJoulToCal()">convert joul to cal</button>
+	<p id="result_24"></p>
+<div/>
+<div>
+	Kwh:<input id="kwatt_1" type="text" value="2"/>
+	Used minutes:<input id="minutes_2" type="text" value="120"/>
+	<br/>
+	<button onclick="convertKwh()">convertKwh</button>
+	<p id="result_23"></p>
+<div/>
+<div>
+	Power in watts:<input id="watt_3" type="text" value="2000"/>
+	Used minutes:<input id="minutes_1" type="text" value="120"/>
+	<br/>
+	<button onclick="convertWattsToKwh()">convertWattsToKwh</button>
+	<p id="result_22"></p>
+<div/>
+<div>
+	Time From:<input id="time_1" type="text" value="22:30"/>
+	To:<input id="time_2" type="text" value="23:30"/>
+	<br/>
+	Kwh From:<input id="watt_1" type="text" value="23.00"/>
+	To:<input id="watt_2" type="text" value="25.00"/>
+	<br/>
+	<button onclick="calc()">calc</button>
+	<p id="result"></p>
+	<p id="result_1"></p>
+	<button onclick="usedPower()">used power</button>
+	<p id="used_power"></p>
+<div/>
+<p>
+1 watt = 0.001 kilowatts arba 1kw = 1000 watt, <br/> 
+1W * 1 s = 1 Ws = 1 J, <br/>
+1kWh = 1000 W * 3600 s = 3 600 000 Ws = 3 600 000 J, <br/>
+4.184J - 1 calorija, 1g vandens pasildyti 1 laipsniu. <br/>
+</p>
+</html>
+

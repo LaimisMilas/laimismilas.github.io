@@ -1,0 +1,81 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Tekstas</title>
+</head>
+<body>
+<textarea id="textIN"></textarea>
+<input id="letterIN" type="text" />
+<input onclick="run();" type="button" value="RUN" />
+<div id="demo"></div>
+<script>
+
+function run(){
+
+	var i = 0;
+
+	var textArray = splitText();
+	var letter = getLetter(); 
+
+	while(i < textArray.length){
+
+		var nElement = document.createElement("div");
+
+		if(isLetterInText(letter, textArray[i])){
+
+			nElement.innerHTML = "Raidė " + letter + " rasta žodyje - " + textArray[i];
+
+			document.getElementById("demo").appendChild(nElement);
+		
+
+		} else {
+
+			nElement.innerHTML = "Raidė " + letter + " nerasta žodyje - " + textArray[i];
+			
+			document.getElementById("demo").appendChild(nElement);
+
+		}
+
+		i++;
+
+	}
+
+}
+
+function getLetter(){
+
+	return document.getElementById("letterIN").value;
+}
+
+function splitText(){
+
+	var text = document.getElementById("textIN").value;
+
+	var tokens = text.split(' ');
+
+	return tokens;
+}
+
+function isLetterInText(letter, text){
+
+	var result = false;	
+
+	for(var i = 0; i < text.length; i++){
+	
+		var subString  = text.slice(i, i + 1);
+	
+		if( subString == letter){
+	
+			result = true;
+			
+			break;
+		
+		}	
+	}
+
+	return result;
+}
+
+</script>
+</body>
+</html> 

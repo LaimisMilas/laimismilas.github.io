@@ -1,0 +1,61 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Tekstas</title>
+</head>
+<body>
+<div id="demo"></div>
+<script>
+
+var letter = "k";
+var texts = ["testas","kitis","kotas","linai","kuras","obuolys"];
+
+function isLetterInText(letter, text){
+
+	var result = false;	
+
+	for(var i = 0; i < text.length; i++){
+	
+		var subString  = text.slice(i, i + 1);
+	
+		if( subString == letter){
+	
+			result = true;
+			
+			break;
+		
+		}	
+	}
+
+	return result;
+}
+
+var i = 0;
+
+while(i < texts.length){
+
+	var nElement = document.createElement("div");
+
+	if(isLetterInText(letter, texts[i])){
+
+		nElement.innerHTML = "Raidė " + letter + " rasta žodyje - " + texts[i];
+
+		document.getElementById("demo").appendChild(nElement);
+	
+
+	} else {
+
+		nElement.innerHTML = "Raidė " + letter + " nerasta žodyje - " + texts[i];
+		
+		document.getElementById("demo").appendChild(nElement);
+
+	}
+
+	i++;
+
+}
+
+</script>
+
+</body>
+</html> 
