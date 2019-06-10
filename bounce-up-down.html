@@ -29,7 +29,7 @@ function moveElement(el) {
   function moveDown() {
     if (elTop == 900) {
       clearInterval(id);
-      id = setInterval(moveUp, 5);
+      id = setInterval(moveLeft, 5);
     } else {
       elTop++; 
       elem.style.top = elTop + "px"; 
@@ -39,13 +39,33 @@ function moveElement(el) {
   function moveUp() {
     if (elTop == 100) {
       clearInterval(id);
-      id = setInterval(moveDown, 5);
+      id = setInterval(moveRight, 5);
     } else {
       elTop--; 
       elem.style.top = elTop + "px"; 
       elem.style.left = elLeft + "px"; 
     }
   };
+  function moveLeft() {
+    if (elLeft == 10) {
+      clearInterval(id);
+      id = setInterval(moveUp, 5);
+    } else {
+      elLeft--; 
+      elem.style.top = elTop + "px"; 
+      elem.style.left = elLeft + "px"; 
+    }
+  };
+  function moveRight() {
+    if (elLeft == 900) {
+      clearInterval(id);
+      id = setInterval(moveDown, 5);
+    } else {
+      elLeft++; 
+      elem.style.top = elTop + "px"; 
+      elem.style.left = elLeft + "px"; 
+    }
+  }
 }
 </script>
 </body>
