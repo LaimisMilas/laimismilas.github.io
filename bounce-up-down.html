@@ -15,40 +15,38 @@
 }
 </style>
 <body>
-
 <p><button onclick="myMove()">Click Me</button></p> 
-
 <div id ="container">
   <div id ="animate"></div>
 </div>
-
 <script>
-function myMove() {
-  var elem = document.getElementById("animate");   
-  var pos = 0;
+function moveElement(el) {
+  var elem = el;   
+  var elTop = elem.offsetTop;
+  var elLeft = elem.offsetLeft;       
   var id = setInterval(moveDown, 5);
+
   function moveDown() {
-    if (pos == 350) {
+    if (elTop == 900) {
       clearInterval(id);
       id = setInterval(moveUp, 5);
     } else {
-      pos++; 
-      elem.style.top = pos + "px"; 
-      elem.style.left = pos + "px"; 
+      elTop++; 
+      elem.style.top = elTop + "px"; 
+      elem.style.left = elLeft + "px"; 
     }
   };
   function moveUp() {
-    if (pos == 10) {
+    if (elTop == 100) {
       clearInterval(id);
       id = setInterval(moveDown, 5);
     } else {
-      pos--; 
-      elem.style.top = pos + "px"; 
-      elem.style.left = pos + "px"; 
+      elTop--; 
+      elem.style.top = elTop + "px"; 
+      elem.style.left = elLeft + "px"; 
     }
   };
 }
 </script>
-
 </body>
 </html>
