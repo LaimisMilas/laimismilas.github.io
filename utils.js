@@ -1,3 +1,34 @@
+let Utils = {
+	clearNode: function (id) {
+
+	    document.getElementById(id).innerHTML = '';
+	},
+	getValue: function (id){
+
+	    return this.getById(id).value;
+	},
+	getById: function (id){
+
+	    return document.getElementById(id);
+	},
+	insertBefore: function (id, el){
+
+	    this.getById(id).insertBefore(el, this.getById(id).lastChild);
+	},
+	createElement: function (tag, text) {
+
+	    let el = document.createElement(tag);
+
+	    el.innerText = text;
+
+	    return el;
+	},
+	setDefaultDate: function (id){
+
+	    this.getById(id).value = new Date();
+	}
+}
+
 function getById(id){
 	return document.getElementById(id);
 }
@@ -29,7 +60,6 @@ function moveRight(element){
 
 	element.style.left = (element.offsetLeft + 2) + "px";
 	element.style.top =  (element.offsetTop + 0) + "px";
-
 }
 
 function moveLeft(element){
