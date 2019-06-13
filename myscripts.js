@@ -13,7 +13,7 @@ function getValue(id){
 
 function isPalindrome(elValue,elPrint){
 	
- 	var result = "TAIP.";
+ 	var result = "NE.";
 	var resultText = " yra palindrome? ";
 	var palind = "";
 	var world = getValue(elValue).toLowerCase();
@@ -22,7 +22,7 @@ function isPalindrome(elValue,elPrint){
 		palind = palind + world.charAt((world.length - 1) - i); 
 	} 
 	if(world == palind){
-		result = "NE.";
+		result = "TAIP.";
 	}
 	printToElement(elPrint, '"' + world + '"' + resultText + result);
 
