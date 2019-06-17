@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG random color</title>
+    <link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
+    <script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>
+</head>
+<body>
+<div id="header">
+    <div id="log"></div>
+    <div id="menu">
+        <a href="#">Home</a>
+        <a href="#">App</a>
+    </div>
+</div>
+<div id="main">
+    <svg id="space">
+    
+    </svg>
+    <div id="settings">
+        <ul>
+            <li><input type="text" id="i2" value="100" /><label>w</label></li>
+            <li><input type="text" id="i1" value="100" /><label>h</label></li>
+            <li><input type="text" id="i3" onchange="updateTimer(this)"/><label>i</label></li>
+            <li>
+                <input type="button" onclick="swich()" value="arc/rec" />
+                <input type="button" onclick="stopActions()" value="stop/start" />
+            </li>
+            <li>
+                <input type="color" id="icolor" />
+                <input type="button" onclick="setRandomeColor()" value="rando color" />
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="footer"><span>Author:</span><span>LM</span></div>
+<script type="text/javascript">
+    var actions = 1;
+    var currentElement = 1;
+    var randomColor = 0;
+    function setRandomeColor(){
+        if(randomColor === 0){
+            randomColor = 1;
+        } else {
+            randomColor = 0;
+        }
+    }
+    function stopActions(){
+        if(actions === 0){
+            actions = 1;
+        } else {
+            actions = 0;
+        }
+    }
+    function swich(){
+        if(currentElement === 1){
+            currentElement = 2;
+        } else {
+            currentElement = 1;
+        }
+    }
+    function getColor(){
+        var result = 0;
+        if(randomColor === 0){
+            result = getValue("icolor");
+        }else{
+            result =  getRandomColor();
+        }
+        return  result;
+    }
+    function getSpace(m){
+        var result = 0;
+        var space = getById("space");
+        if(m === "top"){
+            result = space.clientHeight;
+        } else {
+            result = space.clientWidth;
+        }
+        return result;
+    }
+    function addElement(){
+        
+        var svgns = "http://www.w3.org/2000/svg";
+        
+        var space = document.getElementById("space");
+        
+        var element = document.createElementNS(svgns, "rect");
+        element.setAttributeNS(null, "fill", getColor());
+        element.setAttributeNS(null, "width", getValue("i2"));
+        element.setAttributeNS(null, "height", getValue("i1"));
+        element.setAttributeNS(null, "stroke", getColor());
+        element.setAttributeNS(null, "stroke-width", 2);
+        element.setAttributeNS(null, "opacityy", 0.5);
+        element.setAttributeNS(null, "ry", 20);
+        element.setAttributeNS(null, "rx", 20);
+        element.setAttributeNS(null, "x", getXPosition(space));
+        element.setAttributeNS(null, "y", getYPosition(space));
+        
+        getById("space").appendChild(element);
+    }
+    
+    function getYPosition(space){
+        var spaceTop = space.clientTop;
+        var spaceButtom = space.clientTop + space.clientHeight;
+        var elHight = Number(getValue("i1"));
+        var elTop = getRandomNumber(spaceTop, spaceButtom - elHight);
+        var elButtom = elTop + elHight;
+        if(elButtom >= spaceButtom){
+            elTop = spaceButtom - elHight - 2;
+        }
+        return elTop;
+    }
+    
+    function getXPosition(space){
+        var spaceLeft = space.clientLeft;
+        var spaceRight = space.clientLeft + space.clientWidth;
+        var elWidth = Number(getValue("i2"));
+        var elLeft = getRandomNumber(spaceLeft, spaceRight - elWidth);
+        var elRight = elLeft + elWidth;
+        if(elRight >= spaceRight){
+            elLeft = spaceRight - elWidth - 2 ;
+        }
+        return elLeft;
+    }
+    
+    function createObject(){
+        if(actions === 0 ){
+            if(currentElement === 1){
+                addElement();
+                moveChildren("space");
+            } else {
+                creatCanvas();
+            }
+        }
+    }
+    function updateTimer(el){
+        clearInterval(timer);
+        timer = setInterval(createObject, el.value);
+    }
+    function isOutSideParent(el) {
+        let result = false;
+        const parent = el.parentElement;
+        const rightPosition = parent.offsetLeft + parent.offsetWidth;
+        const leftPosition = parent.offsetLeft;
+        const topPosition = parent.offsetTop;
+        const buttomPosition = parent.offsetTop + parent.offsetHeight;
+        if(el.offsetTop <= topPosition){
+            result = true;
+        }
+        if(el.offsetLeft <= leftPosition){
+            result = true;
+        }
+        if(el.offsetLeft + el.offsetWidth <= rightPosition){
+            result = true;
+        }
+        if(el.offsetTop + el.offsetHeight >= buttomPosition){
+            result = true;
+        }
+        return result;
+    }
+    function moveChildren(id){
+        const parent = getById(id);
+        const elements = parent.children;
+        for(let i = 0; i < elements.length; i++){
+            const element = elements[i];
+            if(isOutSideParent(element)){
+                const move = element.getAttribute("move");
+                if(move === "up"){
+                    element.setAttribute("move", "down");
+                    moveDown(element);
+                } else if(move === "down"){
+                    element.setAttribute("move", "up");
+                    moveUp(element);
+                } else if(move === "left"){
+                    element.setAttribute("move", "right");
+                    moveRight(element);
+                } else if(move === "right"){
+                    element.setAttribute("move", "left");
+                    moveLeft(element);
+                } else if(move === "false"){
+                    element.setAttribute("move", "left");
+                    moveLeft(element);
+                }
+            }else{
+                moveLeft(element);
+            }
+        }
+    }
+    var timer = setInterval(createObject, 1000);
+</script>
+</body>
+</html>
