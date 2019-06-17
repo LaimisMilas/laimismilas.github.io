@@ -198,6 +198,33 @@
             }
         }
     }
+        function closeToBoard(el){
+        const toleranc = 10;
+        let result = false;
+        const space = el.parentElement;
+        const spaceRight = space.clientLeft + space.clientWidth;
+        const spaceLeft = space.clientLeft;
+        const spaceTop = space.clientTop;
+        const spaceButtom = spaceTop + space.clientHeight;
+        const elRight = el.clientLeft + el.clientWidth;
+        const elButtom = el.clientTop + el.clientHeight;
+        
+        if(el.offsetTop <= spaceTop + toleranc){
+            result = true;
+        }
+        if(el.offsetLeft <= spaceLeft + toleranc){
+            result = true;
+        }
+        if(elRight >= rightPosition - toleranc){
+            result = true;
+        }
+        if(elButtom >= buttomPosition - toleranc){
+            result = true;
+        }
+        return result;
+    }
+    
+    
     var timer = setInterval(createObject, 1000);
 </script>
 </body>
