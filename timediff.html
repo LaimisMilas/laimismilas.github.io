@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
+</head>
+<body>
+<div id="header">
+    <div id="log">
+    </div><!--log end -->
+    <div id="menu">
+        <a href="index.html">Home</a>
+        <a href="LetterInText.html">LetterInText</a>
+        <a href="Palindrome.html">Palindrome</a>
+        <a href="RandomeColor.html">RandomeColor</a>
+        <a href="RandomeColor_1.html">RandomeColor_1</a>
+        <a href="bounce.html">bounce</a>
+        <a href="calc.html">calc</a>
+        <a href="console.html">console</a>
+        <a href="myscripts.js">myscripts</a>
+        <a href="space_control.html">space_control</a>
+        <a href="style.css">Style</a>
+        <a href="textAnalize.html">textAnalize</a>
+        <a href="bounce-up-down.html">bounce-up-down</a>
+        <a href="timediff.html">time diff</a>
+    </div><!--menu end -->
+</div><!--header end -->
+<div id="main">
+    <div id="sidebar">
+    </div><!--sidebar end -->
+    <div id="content">
+
+        <input type="time" id="from" onchange="calcDiff()"/>
+        <input type="time"  id="to" onchange="calcDiff()"/>
+        <div id="result" ></div>
+    </div><!--content end -->
+</div><!--main end -->
+<div id="footer">
+    <span>Author:</span><span>Laimonas Milasius 2019</span>
+</div><!--footer end -->
+<script>
+
+    function calcDiff() {
+
+        let valueFrom = document.getElementById("from").value;
+        let valueTo = document.getElementById("to").value;
+
+        document.getElementById("result").innerText == valueFrom + valueTo
+
+    }
+
+    function parseTime(s) {
+        var part = s.match(/(\d+):(\d+)(?: )?(am|pm)?/i);
+        var hh = parseInt(part[1], 10);
+        var mm = parseInt(part[2], 10);
+        var ap = part[3] ? part[3].toUpperCase() : null;
+        if (ap === "AM") {
+            if (hh == 12) {
+                hh = 0;
+            }
+        }
+        if (ap === "PM") {
+            if (hh != 12) {
+                hh += 12;
+            }
+        }
+        return { hh: hh, mm: mm };
+    }
+
+    parseTime("12:00 AM"); // {hh:  0, mm: 0}
+    parseTime("12:00 PM"); // {hh: 12, mm: 0}
+    parseTime("01:00 PM"); // {hh: 13, mm: 0}
+    parseTime("23:00");
+</script>
+</body>
+</html>
