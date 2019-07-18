@@ -310,8 +310,20 @@ function get(text, index){
 <p>1 year = 52 weeks</p>
 </div>
 </div>
+<p>Click the button to evaluate/execute JavaScript code/expressions.</p>
+<button onclick="executeScript()">Try it</button>
+<textarea row=10 id="codeEval">
+</textarea>
+<p id="demo"></p>
+<script>
+function executeScript() {
+  var codeToExecute = document.getElementById("codeEval").value;
+  var res = eval(codeToExecute) + "<br>";
+  document.getElementById("demo").innerHTML = res;
+}
+</script>
 <div id="footer">
-<span>Author:</span><span>Laimonas Milasius 2019</span>
+	<span>Author:</span><span>Laimonas Milasius 2019</span>
 </div>
 </body>
 </html>
