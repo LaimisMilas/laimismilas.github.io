@@ -81,6 +81,13 @@ function moveDown(element){
 }
 
 let Menu = {
+     elTmp: function() {
+
+         let el = document.createElement("a");
+         el.style.margin = "2px";
+
+         return el;
+     },
      tabs:[
          {
              href: "LetterInText.html",
