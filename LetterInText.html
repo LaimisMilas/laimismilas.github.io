@@ -58,7 +58,7 @@ while(i < texts.length){
 }
 	
  Menu.tabs.forEach((item) => {
-     let el = Menu.elTmp;
+     let el = Menu.elTmp();
      el.href = item.href;
      el.text = item.text;
      document.getElementById("menutabs").appendChild(el);
