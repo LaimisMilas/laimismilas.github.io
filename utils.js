@@ -80,3 +80,72 @@ function moveDown(element){
 	element.style.top =  (element.offsetTop + 1) + "px";
 }
 
+let Menu = {
+     tabs:[
+         {
+             href: "LetterInText.html",
+             text: "LetterInText",
+             index: 0
+         },
+         {
+             href: "Palindrome.html",
+             text: "Palindrome",
+             index: 1
+         },
+         {
+             href: "RandomeColor.html",
+             text: "RandomeColor",
+             index: 2
+         },
+         {
+             href: "RandomeColor_1.html",
+             text: "RandomeColor_1",
+             index: 3
+         },
+         {
+             href: "bounce-up-down.html",
+             text: "bounce-up-down",
+             index: 4
+         },
+         {
+             href: "bounce.html",
+             text: "bounce",
+             index: 5
+         },
+         {
+             href: "calc.html",
+             text: "calc",
+             index: 6
+         },
+         {
+             href: "console.html",
+             text: "console",
+             index: 7
+         },
+         {
+             href: "nasa-picture.html",
+             text: "nasa-picture",
+             index: 8
+         },
+         {
+             href: "space_control.html",
+             text: "space_control",
+             index: 9
+         },
+         {
+             href: "svg_random_color.html",
+             text: "svg_random_color",
+             index: 10
+         },
+         {
+             href: "textAnalize.html",
+             text: "textAnalize",
+             index: 11
+         },
+         {
+             href: "timediff.html",
+             text: "timediff",
+             index: 12
+         }
+     ]
+ }
