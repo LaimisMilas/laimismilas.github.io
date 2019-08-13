@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1">
+                
+                <title>Image to base64 conversion</title>
+                
+                <style media="screen">
+                    body {
+                        background-color: #f0f0f0;
+                        font: 1em/150% verdana, arial, helvetica, sans-serif;
+                    }
+                h1 {
+                    font-size: 1.5em;
+                    text-align: center;
+                }
+                
+                #base64 {
+                    max-width: 50em;
+                    padding: 1em;
+                    margin:auto;
+                    border: 0.062em solid #000;
+                    background-color: #fff;
+                    word-break: break-all;
+                }
+                </style>
+    </head>
+    <body>
+        <h1>Image to base64 conversion</h1>
+        <img src="./Downloads/images.jpeg" alt="">
+        <img id="img" src="" alt="" >
+        <div id="base64"></div>
+        <script>
+            ( function( d ) {
+             'use strict';
+             
+             var getDataUrl = function (img) {
+                var canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                var ctx = canvas.getContext('2d');
+                ctx.drawImage( img, 0, 0 );
+                return canvas.toDataURL();
+             };
+             
+             var img = d.querySelector( 'img' );
+             img.addEventListener( 'load',
+                                  function ( event ) {
+                                    var dataUrl = getDataUrl( event.currentTarget);
+                                    d.getElementById("img").src = dataUrl;
+                                  });
+             }( document ));
+
+        </script>
+    </body>
+</html>
