@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Console Logs</title>
+    <link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
+    <script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>
 </head>
 <body>
-
+<div id="menutabs"><div>
 <div id="controller">
     <input type="text" id="messageText"/>
     <input type="button" onclick="writeToLogScreen()" value="Push">
@@ -42,7 +44,13 @@
         document.getElementById(id).insertBefore(el, document.getElementById(id).childNodes[2]);
 
     }
-
+    
+ Menu.tabs.forEach((item) => {
+     let el = Menu.elTmp();
+     el.href = item.href;
+     el.text = item.text;
+     document.getElementById("menutabs").appendChild(el);
+ });
 </script>
 </body>
 </html>
