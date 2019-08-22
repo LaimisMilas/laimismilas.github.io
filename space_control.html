@@ -2,28 +2,13 @@
 <html>
 <head>
 <title>Randome color</title>
-    <link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
-    <script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>	
+	<link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
+	<script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>	
 </head>
 <body>
 <div id="header">
-    <div id="log"></div>
-    <div id="menu">
-        <a href="laimismilas.github.io">Home</a>
-        <a href="LetterInText.html">LetterInText</a>
-        <a href="Palindrome.html">Palindrome</a>
-        <a href="RandomeColor.html">RandomeColor</a>
-        <a href="RandomeColor_1.html">RandomeColor_1</a>
-        <a href="bounce.html">bounce</a>
-        <a href="calc.html">calc</a>
-        <a href="console.html">console</a>
-        <a href="myscripts.js">myscripts</a>
-        <a href="space_control.html">space_control</a>
-        <a href="style.css">Style</a>
-        <a href="textAnalize.html">textAnalize</a>
-        <a href="bounce-up-down.html">bounce-up-down</a>
-        <a href="svg_random_color.html">svg random color</a>
-    </div>
+    	<div id="log"></div>
+	<div id="menutabs"><div>
 </div>    
 <div id="main">    
     <div id="space"></div>
@@ -204,7 +189,14 @@ function updateTimer(el){
 } 
     
 var timer = setInterval(createObject, 20);
-    
+
+Menu.tabs.forEach((item) => {
+     let el = Menu.elTmp();
+     el.href = item.href;
+     el.text = item.text;
+     document.getElementById("menutabs").appendChild(el);
+ });
+
 </script>
 </body>
 </html> 
