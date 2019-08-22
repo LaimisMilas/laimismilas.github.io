@@ -25,8 +25,11 @@
                     word-break: break-all;
                 }
                 </style>
+        <link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
+        <script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>
     </head>
     <body>
+        <div id="menutabs"><div>
         <h1>Image to base64 conversion</h1>
         <img src="./Downloads/images.jpeg" alt="">
         <img id="img" src="" alt="" >
@@ -51,6 +54,13 @@
                                     d.getElementById("img").src = dataUrl;
                                   });
              }( document ));
+            
+             Menu.tabs.forEach((item) => {
+                let el = Menu.elTmp();
+                el.href = item.href;
+                el.text = item.text;
+                document.getElementById("menutabs").appendChild(el);
+            });
 
         </script>
     </body>
