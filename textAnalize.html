@@ -2,8 +2,11 @@
 <html>
 <head>
 <title>Tekstas</title>
+	<link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
+	<script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>
 </head>
 <body>
+<div id="menutabs"><div>
 <textarea id="textIN"></textarea>
 <input id="letterIN" type="text" />
 <input onclick="run();" type="button" value="RUN" />
@@ -75,6 +78,13 @@ function isLetterInText(letter, text){
 
 	return result;
 }
+	
+Menu.tabs.forEach((item) => {
+     let el = Menu.elTmp();
+     el.href = item.href;
+     el.text = item.text;
+     document.getElementById("menutabs").appendChild(el);
+ });
 
 </script>
 </body>
