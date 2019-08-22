@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
+    <link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
+    <script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>
     <body>
+        <div id="menutabs"><div>
         <button type="button" onclick="getEmails();">getEmails</button>
         <p id="demo"></p>
         <script>
@@ -22,6 +25,13 @@
                 }
                 return null;
             }
+            
+             Menu.tabs.forEach((item) => {
+                let el = Menu.elTmp();
+                el.href = item.href;
+                el.text = item.text;
+                document.getElementById("menutabs").appendChild(el);
+            });
             
         </script>
     </body>
