@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>Randome color</title>
-</head>
 <style>
 html {height:100%} 
 body {min-height:100%}
@@ -15,7 +14,9 @@ float:right;
 width: 30%;
 }
 </style>
+</head>
 <body>
+<div id="menutabs"><div>
 <div id="space"></div>
 <div id="control">
 	<button onClick="run();" >Run</button>
@@ -297,7 +298,13 @@ function main(){
 	printElements();
 
 }
-
+	
+ Menu.tabs.forEach((item) => {
+     let el = Menu.elTmp();
+     el.href = item.href;
+     el.text = item.text;
+     document.getElementById("menutabs").appendChild(el);
+ });
 
 </script>
 </body>
