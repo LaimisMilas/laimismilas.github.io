@@ -156,8 +156,13 @@ let Menu = {
          },
          {
              href: "temp-email.html",
-             text: "timediff",
+             text: "temp-email",
              index: 13
+         },
+         {
+             href: "index.html",
+             text: "home",
+             index: 14
          }
      ]
  }
