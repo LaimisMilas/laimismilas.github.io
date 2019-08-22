@@ -3,27 +3,13 @@
 <head>
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
+    <script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>
 </head>
 <body>
 <div id="header">
     <div id="log">
     </div><!--log end -->
-    <div id="menu">
-        <a href="index.html">Home</a>
-        <a href="LetterInText.html">LetterInText</a>
-        <a href="Palindrome.html">Palindrome</a>
-        <a href="RandomeColor.html">RandomeColor</a>
-        <a href="RandomeColor_1.html">RandomeColor_1</a>
-        <a href="bounce.html">bounce</a>
-        <a href="calc.html">calc</a>
-        <a href="console.html">console</a>
-        <a href="myscripts.js">myscripts</a>
-        <a href="space_control.html">space_control</a>
-        <a href="style.css">Style</a>
-        <a href="textAnalize.html">textAnalize</a>
-        <a href="bounce-up-down.html">bounce-up-down</a>
-        <a href="timediff.html">time diff</a>
-    </div><!--menu end -->
+    <div id="menutabs"><div>
 </div><!--header end -->
 <div id="main">
     <div id="sidebar">
@@ -71,6 +57,13 @@
     parseTime("12:00 PM"); // {hh: 12, mm: 0}
     parseTime("01:00 PM"); // {hh: 13, mm: 0}
     parseTime("23:00");
+    
+     Menu.tabs.forEach((item) => {
+     let el = Menu.elTmp();
+     el.href = item.href;
+     el.text = item.text;
+     document.getElementById("menutabs").appendChild(el);
+ });
 </script>
 </body>
 </html>
