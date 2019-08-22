@@ -2,14 +2,18 @@
 <html>
 <head>
 <title>Randome color</title>
-</head>
-<style>
+	<link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
+<script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>
+	<style>
 #space{
 	min-height:100%;
 	min-width: 100%;
 }
 </style>
+</head>
+
 <body>
+<div id="menutabs"><div>
 <div id="space"></div>
 
 <script type="text/javascript">
@@ -51,6 +55,13 @@ for(var i = 0; i < 10; i++){
 	setInterval(addElement, 2);
 
 }
+	
+Menu.tabs.forEach((item) => {
+	let el = Menu.elTmp();
+	el.href = item.href;
+	el.text = item.text;
+	document.getElementById("menutabs").appendChild(el);
+});	
 
 </script>
 </body>
