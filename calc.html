@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
-<link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />	
+<head>	
+<link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
+<script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>
 <script src="./myscripts.js"></script>
 <script>
 
@@ -236,22 +237,7 @@ function get(text, index){
 </head>
 <body>
 		<div id="header">
-			<div id="menu">
-				<a href="index.html">Home</a>
-				<a href="LetterInText.html">LetterInText</a>
-				<a href="Palindrome.html">Palindrome</a>
-				<a href="RandomeColor.html">RandomeColor</a>
-				<a href="RandomeColor_1.html">RandomeColor_1</a>
-				<a href="bounce.html">bounce</a>
-				<a href="calc.html">calc</a>
-				<a href="console.html">console</a>
-				<a href="myscripts.js">myscripts</a>
-				<a href="space_control.html">space_control</a>
-				<a href="style.css">Style</a>
-				<a href="textAnalize.html">textAnalize</a>
-				<a href="bounce-up-down.html">bounce-up-down</a>
-				<a href="svg_random_color.html">svg random color</a>
-    			</div>
+			<div id="menutabs"><div>
 		</div>
 		<div id="main">
 			<div id="sidebar">
@@ -317,11 +303,20 @@ function get(text, index){
 </textarea>
 <p id="demo"></p>
 <script>
+	
 function executeScript() {
   var codeToExecute = document.getElementById("codeEval").value;
   var res = eval(codeToExecute) + "<br>";
   document.getElementById("demo").innerHTML = res;
 }
+	
+ Menu.tabs.forEach((item) => {
+     let el = Menu.elTmp();
+     el.href = item.href;
+     el.text = item.text;
+     document.getElementById("menutabs").appendChild(el);
+ });
+
 </script>
 <div id="footer">
 	<span>Author:</span><span>Laimonas Milasius 2019</span>
