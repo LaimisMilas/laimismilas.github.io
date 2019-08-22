@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <button type="button" onclick="getEmails();">getEmails</button>
+        <p id="demo"></p>
+        <script>
+            const apiKey = "e3d998d321mshb1a327a2d3371a8p1105d0jsn9492c1a109d4";
+            const apiUrl = "https://privatix-temp-mail-v1.p.rapidapi.com/request/mail/id/46a2b5aa02b6c9722e1d8a19136425a2/";
+    
+            function getEmails() {
+                const xhr = new XMLHttpRequest();
+                xhr.withCredentials = true;
+                xhr.open('GET', apiUrl, false);
+                xhr.setRequestHeader('x-rapidapi-host', 'privatix-temp-mail-v1.p.rapidapi.com');
+                xhr.setRequestHeader('x-rapidapi-key', apiKey);
+                xhr.send(null);
+                if (xhr.readyState === 4) {
+                    var pJSON = JSON.parse(xhr.responseText);
+                    var token = pJSON[0].mail_text.split("<")[1].split(">")[0];
+                    //document.getElementById("demo").innerHTML = token;
+                    return token;
+                }
+                return null;
+            }
+            
+        </script>
+    </body>
+</html>
