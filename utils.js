@@ -155,8 +155,8 @@ let Menu = {
              index: 12
          },
          {
-             href: "temp-email.html",
-             text: "temp-email",
+             href: "temp-mail.html",
+             text: "temp-mail",
              index: 13
          },
          {
