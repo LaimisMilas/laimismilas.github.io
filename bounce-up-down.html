@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
+<script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>
 <style>
 #container {
   width: 400px;
@@ -15,6 +17,7 @@
 }
 </style>
 <body>
+  <div id="menutabs"><div>
 <p><button onclick="myMove()">Click Me</button></p> 
 <div id ="container">
   <div id ="animate"></div>
@@ -71,6 +74,14 @@ function moveElement(el) {
     }
   }
 }
+  
+  Menu.tabs.forEach((item) => {
+     let el = Menu.elTmp();
+     el.href = item.href;
+     el.text = item.text;
+     document.getElementById("menutabs").appendChild(el);
+ }); 
+  
 </script>
 </body>
 </html>
