@@ -33,3 +33,49 @@ var encodeText = ${emailAddress}; var email ="laimonas@interactio.io"; var code 
 
 Įrankis xpath kūrimui. Padeda kai reikia surasti target elementą. 
 http://xpather.com
+
+Links: https://www.mocky.io/
+https://beeceptor.com/
+https://konghq.com/ 
+http://mockbin.org/ leidzia susikurti, Nemokamas, nera managerio. 
+Git Clone https://github.com/Kong/mockbin.git
+npm install
+npm start
+open url http://localhost:8080/bin/create
+https://httpstat.us/ leidžia mokinti status kodus.
+httpstat.us/200?sleep=5000  leidžia mokinti status kodą ir sleep serverio pusėje. Sleepas iki 5sec.
+https://signup.heroku.com
+Pasileidau Interactio/mockhttp aplikacija. Leidžia mokinti requestus, prasitestavau statusCode, timeout'us.
+Dar norėčiau pasitestinti networko trigdžius, kai dings vel atsistato. Nežinau kaip sumokinti programiškai tokius dalykus.
+https://temp-mail.org leidžia kurti laikinus elpaštus.  Dar turi API https://temp-mail.org/api/
+https://www.tempmailaddress.com leidžia kurti laikinus elpaštus.
+https://tempail.com/en/  leidžia kurti laikinus elpaštus.
+https://www.guerrillamail.com   leidžia kurti laikinus elpaštus.
+https://www.emailondeck.com/eod.php   leidžia kurti laikinus elpaštus.
+https://mailsac.com/docs/api/#introduction
+Radau Selenium IDE triukus, leidzia prasiplėsti esamą ide.   https://sites.google.com/site/seleniumworks/selenium-ide-tricks
+
+Appium home: http://appium.io Selenium WebDrive wrappers. Appium yra web serveris turintis REST API.
+Pagrindine užduotis testuoti Mobilias aplikacijas su tikrais įrenginiais ar simuliatoriais.
+Appium turi ir Appium Desktop GUI versija, yra viską ko reikia kad paleisti serverį, sukonfiguruoti, inspektinti.
+Appium serveris palaiko bibliotekas appium-clients siulo naudoti vietoje įprasto WebDrive kliento. Appium klientai turi implementave Mobile JSON Wire Protocol.
+Testuoti MacOS hibridines aplikacijas.
+Darbui su MacOS aplikacijomis yra specialiai sukurtas serveris AppiumForMac(Appium server). Tai Appium web serverio analogas. Serveriu yra sukurtas
+specialus klientas appium-mac-driver. http://appium.io/docs/en/drivers/mac/index.html
+Galima tiesiog parsisiusti jau subuildinta apps'a. AppiumForMac.zip ir instalioti /Applications.
+Isitikinti ar AppiumForMac serveris yra /Applications dirktorijoje. Kai nėra reikia įdiegti.
+Sukurti klieną, kuris priklauso nuo biblioteka "appium-mac-driver". Jei biblioteks nebus sistema neveiks ir išduos pranešimą.
+Sukurti capabilities(caps) : let defaultCaps = {
+platformName: "Mac",
+platformVersion: "10.14",
+deviceName: "Mac mini",
+automationName: "XCUITest",
+app:"/Users/laimis/Desktop/Dev.app"
+};
+Sukurti MacDrive objecta. MacDriver = require("appium-mac-driver").MacDriver;
+Paleidus susikuria sesija tarp "Klient app", "AppiumForMAC" ir "Interactio Broatcaster Dev". Galima vygdyti testavimo scenariju.
+Norint debuginti AppiumForMac. Reikia parsisiusti source https://github.com/appium/appium-for-mac pasileisti su XCodel.
+AppiumForMac, turi JSONWiredProtocol realizacija, bet ne pilną,ne visi endopointai yra realizuotos, tai matosi source kode. Kada nėra noro kurti klientą, galima tiesiog rankiniu būdu paleisti 
+AppiumForMac. JMeter pagalba galima kviesti HTTPRequest ir perdavinėti paramentrus, taip bus vygdomas JSONWiredProtocol.
+Dirbant su sistema susiduriau su problema kad nevisada galiu gauti page source, tai susija su privileges, įkėlus applikaciją į Application direktorija page source galima gauti.
+Bet Interactio Broadcaster vistiek neleidzia pasiekti page source. 
