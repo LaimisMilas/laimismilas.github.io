@@ -1,0 +1,82 @@
+E2E (End-to-end) tests
+Name
+URL
+ Record/Playback
+GUI
+
+Free
+Notes
+Selenium IDE	
+seleniumhq.org
+TAIP	TAIP	
+TAIP	
+Katalon Studija	katalon.com	TAIP	TAIP	
+TAIP/?	2019 Gavo nominacija, "klientas renkasi". Enterprice lygio produktas.
+Protractortest	protractortest.org	NE	NE	node.js	TAIP	Angular'as rekomenduoja
+Karma	karma-runner.github.io	NE	NE	node.js	TAIP	Angular'as rekomenduoja
+Nightwatch	https://nightwatchjs.org/	NE	NE	node.js	TAIP	
+DevExpress	devexpress.com	TAIP	TAIP	
+NE	TestCafe partneriai. Panašus į Selenium IDE.
+Ranorex Studio
+ranorex.com	TAIP	TAIP	
+NE	GUI labai panašus į Selenium IDE,  Enterprice lygio produktas. Nepavyko isbandyti, neina pasileisti.
+Crossbrowsertesting	crossbrowsertesting.com	TAIP	TAIP	
+NE	Išskirtinai turi atidėjimo mechanizma, integracijas su Jira, Slack sistemomis.
+Cloudqa	cloudqa.io	TAIP	TAIP	
+NE	Selenium IDE kopija.
+Sideex	sideex.org	TAIP	TAIP	
+TAIP	Selenium IDE kopija.
+Appium	http://appium.io/	NE	TAIP	
+TAIP	WebDrive implementacija, gali dirbti su MacOS, IOS, Windows, Safari, Firefox, Android.
+Spectron	https://electronjs.org/spectron	NE	NE	
+TAIP	Built on top of ChromeDriver and WebDriverIO
+https://www.seleniumhq.org/selenium-ide/
+Selenium IDE, veikia kaip browser pluginas. Turi testcase, testsuite, test. Gali įrašyti testo scenariju ir atkartoti. Išsaugo vieną failą JSON formatu.
+Programinuo kodo visai nesimato, reikia ismanyti DOM. Nemokamas.
+https://www.katalon.com/
+Katalon Studija atrodo rimtas įrankis, kaip Jie patys rašo tai Selenium ir Appium wrapperis. Pats Katalon Studio parašytas ant Eclipse platformos. Gali įrašyti ir atkartoti scenarijus.
+Bandžiau sukurti web automation testą, tai tikrai įdomus ir vertas dėmesio. Plius ten daug visokių papildomų galimybių, integracios su Jira, Jenkins, CI.
+Tik nėra visai aišku dėl licenzijos, reiktu pasiaiškinti. Plius eclipso bajeriai.
+https://www.protractortest.org
+Paprastai ir greitai galima pradėti dirbti, neturi UI. Node.js pagrindu, projektas naudoja Jasmine formatą ir JavaScriptu, rašo komandas Selenium Serveriui, komunikuoja per WebDriverJS driverį. Neturi galimybės įrašyti ir atkartoti. Reikia programavimo įgudžių, DOM. Nemokamas, rekomenduoja Angular'as.
+karma-runner.github.io
+Neturi galimybės įrašyti ir atkartoti. Veikia tokiu pat principu kaip ir Protractortest.
+https://nightwatchjs.org/
+Neturi galimybės įrašyti ir atkartoti. Veikia tokiu pat principu kaip ir Protractortest.
+devexpress.com
+GUI labai panašus į Selenium IDE, yra mokamas. Gali įrašyti, paleisti scenarijus. Turi ryši su kitu projektu TestCafe, TestCafe veikia node.js pagrindu, tokiu pat principu kaip ir Protractortest.
+https://crossbrowsertesting.com/
+Turi šedulerį, integracija su Jira, visa kita kaip ir kitur naudoja Selenium serveri. Record/Playback labai panašus į Selenium IDE.
+https://www.protractortest.org/#/  Test like a user,  Form Angular apps, Automatic waiting node.js
+Protractor uses Jasmine for its test syntax. Protractor is a Node.js program built on top of WebDriverJS(draiveris komunikuoti su Selenium Server).
+https://docs.angularjs.org/guide/e2e-testing Angularas rekomenduoja Protractor kaip E2E.
+Unit tests.
+Karma is a JavaScript command line tool.
+Jasmine is a behavior driven development framework for JavaScript that has become the most popular choice for testing AngularJS applications.
+Mocha https://mochajs.org/  node.js
+https://www.chaijs.com/ (BDD/TDD)
+http://browserify.org/
+WebDriver
+WebDriver specifikacija https://www.w3.org/TR/webdriver1/
+WebDriver implementation:
+https://webdriver.io/
+https://www.seleniumhq.org/projects/webdriver/
+https://sites.google.com/a/chromium.org/chromedriver/
+
+
+TDD or Test-Driven Development is a process for when you write and run your tests. 
+BDD – Behavior-Driven Development – is perhaps the biggest source of confusion.
+Horizontal E2E Testing
+Horizontal end-to-end testing operates primarily works from the user’s perspective, stepping through each phase of an application’s business logic from start to finish to ensure each interrelated process executes correctly.
+Vertical E2E Testing
+Vertical end-to-end testing involves testing each layer of an application’s architecture from top to bottom, meaning each subsystem is tested independently, then testing is continued through the network infrastructure, API integration, and UI layers.
+'/Users/laimis/Desktop/Dev.app/Contents/MacOS/Interactio Broadcaster'
+ 
+Naudingi linkai:
+https://www.websocket.org/echo.html
+https://www.guru99.com/top-20-web-testing-tools.html 
+https://www.quora.com/Which-is-the-best-angularJS-testing-tool
+https://dzone.com/articles/what-is-end-to-end-testing-1
+https://codeutopia.net/blog/2015/03/01/unit-testing-tdd-and-bdd/
+https://www.npmjs.com/package/test-drive
+https://jasmine.github.io/
