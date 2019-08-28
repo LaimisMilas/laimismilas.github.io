@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Proporcijos</h2>
+<p id="result"></p>
+<input id="i1" type="text" value="100"/>
+<input id="i2" type="text" value="50"/>
+<input id="i3" type="text" />
+<input id="i4" type="text" />
+<input onclick="doCalc()" type="button" value= "Calc"/>
+
+<script>
+
+function proccess(){
+
+	var i1 = document.getElementById("i1").value;
+	var i2 = document.getElementById("i2").value;
+	var i3 = document.getElementById("i3").value;
+	var i4 = document.getElementById("i4").value;
+     
+    if(i3 > 0){
+
+    	 return ((i3 * i2)/ i1);
+    
+    } else {
+    
+    	return ((i4 * i1)/ i2);
+    }
+}
+function doCalc(){	
+	document.getElementById("result").innerHTML = proccess();
+}
+</script>
+</body>
+</html>
