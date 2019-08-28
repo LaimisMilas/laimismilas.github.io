@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
+	<link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
+    <script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>
 <body>
+<div id="menutabs"><div>	
 <h2>Proporcijos</h2>
 <p id="result"></p>
 <input id="i1" type="text" value="100"/>
@@ -30,6 +33,14 @@ function proccess(){
 function doCalc(){	
 	document.getElementById("result").innerHTML = proccess();
 }
+	    
+     Menu.tabs.forEach((item) => {
+     let el = Menu.elTmp();
+     el.href = item.href;
+     el.text = item.text;
+     document.getElementById("menutabs").appendChild(el);
+ });
+	
 </script>
 </body>
 </html>
