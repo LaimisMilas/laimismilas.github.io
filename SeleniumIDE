@@ -1,0 +1,35 @@
+Instaliacijos instrukcijos https://www.seleniumhq.org/selenium-ide/
+Instrukcijos kaip dirbti su CL.
+https://www.seleniumhq.org/selenium-ide/docs/en/introduction/command-line-runner/
+
+Apie komandas
+Selenium IDE turi komandą "run" paleisti kitus testus. Taip galima skaldyti testus į fragmentus ir pernauodoti. 
+Selenium IDE turi komandą "execute script" paleisti JS.
+Skripto struktura: kintamieji, funkcija, funkcijos iškvietimas. 
+
+Išorinis API
+Panel "Create Event" proceduros menu yra siunčiamas laiškas interpreteriui prisijungti prie sistemos ir patvirtinti kvietimą. Kan automatizuoti patvirtinimą,
+panaudotas  API https://temp-mail.org/ sprendimas.
+API https://temp-mail.org/ leidžia susikurti laikiną el.pašto dėžutę. Taip pat turi API kuris hostinamas pas RapidAPI.
+Norint pradėti naudotis reikia Subscribinti, galima pasirinkti minimalų planą, ten per dieną leidžia sukurti 100 el.pašto dėžučių. 
+https://rapidapi.com/Privatix/api/temp-mail
+RapidAPI yra accounts user: laimonas@interactio.io 
+Dabar raktas naudojamas '33f833735dmsh8703c253eb80266p120ecajsndfc9a16e3623
+Užklausa skirta domenams gauti, API duoda naudoti kelis domenus, Jie gali keisti todėl reikia parsitraukti. Taupant resursus galima išsisaugoti viena domeną ir dirbti su vienu, sutaupytume užklausų skaičių.
+Užklausa atrodo kaip:
+function getDomainList() {   var data = null; var result = 3;     var apiKey = "33f833735dmsh8703c253eb80266p120ecajsndfc9a16e3623";     var apiUrl ="https://privatix-temp-mail-v1.p.rapidapi.com/request/domains/"; var apiMeth ="GET";       var xhr = new XMLHttpRequest(); xhr.withCredentials = true;   xhr.open(apiMeth, apiUrl ,false); xhr.setRequestHeader("x-rapidapi-host", "privatix-temp-mail-v1.p.rapidapi.com"); xhr.setRequestHeader("x-rapidapi-key", apiKey);   xhr.send(data);      if (xhr.readyState === 4){   JSON.parse(xhr.responseText);   result = JSON.parse(xhr.responseText)[0];   return result;   } else {   return result; } }  return getDomainList();
+
+Užklausa leidžia gauti laiškus išsiustus adresatui. Reikia perduoti adresą jis turi būti užkoduotas md5 koduote ir išsaugotas kaip kintamasis "md5Encripted".
+Užklausa laiškams gauti ir regToken parsinti atrodo taip:
+const emailMd5 = ${md5Encripted}; const apiKey = '33f833735dmsh8703c253eb80266p120ecajsndfc9a16e3623'; function getEmails() { const data = null; const result = null; const apiUrl = `https://privatix-temp-mail-v1.p.rapidapi.com/request/mail/id/${emailMd5}/`; const apiMeth = 'GET'; const xhr = new XMLHttpRequest(); xhr.withCredentials = true; xhr.open(apiMeth, apiUrl, false); xhr.setRequestHeader('x-rapidapi-host', 'privatix-temp-mail-v1.p.rapidapi.com'); xhr.setRequestHeader('x-rapidapi-key', apiKey); xhr.send(data); if (xhr.readyState === 4) { var rJSON = JSON.parse(xhr.responseText); return rJSON[0].mail_text.split("<")[1].split(">")[0]; } return result; } return getEmails();
+
+API naudojamas md5 užkodavimui, temp-email.org reikalauja kan el.paštas būtų užkoduotas. 
+https://md5decrypt.net/en/Api/api.php
+https://md5decrypt.net/en/Api/ reiki suvesti paštą, Jie atsius laišką su raktu kurį veliau reikės perdavinėti užklausose.
+Dabar raktas ef98eb935a9620b9 el.paštas laimonas@interactio.io
+Užklausa leidžia gauti užkoduotą tekstą reikia perduoti kintamajį "emailAddress".
+Užklausa atrodo taip:
+var encodeText = ${emailAddress}; var email ="laimonas@interactio.io"; var code = "ef98eb935a9620b9"; function getMd5Code() { var data = null; var result = 3; var apiUrl ="https://md5decrypt.net/en/Api/api.php"; var apiMeth ="GET"; var xhr = new XMLHttpRequest(); xhr.withCredentials = true; xhr.open(apiMeth, apiUrl + "?word="+ encodeText +"&hash_type=md5&email="+ email +"&code="+ code ,false); xhr.send(data); if (xhr.readyState === 4){ result = xhr.responseText; return result; } else { return result; } } return getMd5Code();
+
+Įrankis xpath kūrimui. Padeda kai reikia surasti target elementą. 
+http://xpather.com
