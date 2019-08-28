@@ -163,6 +163,10 @@ let Menu = {
              href: "index.html",
              text: "home",
              index: 14
-         }
+         },{
+	     href: "proporcijos.html",
+	     text: "proportion",
+	     index: 15	 
+	 }
      ]
  }
