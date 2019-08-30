@@ -89,16 +89,8 @@ let Menu = {
          return el;
      },
      tabs:[
-         {
-             href: "LetterInText.html",
-             text: "LetterInText",
-             index: 0
-         },
-         {
-             href: "Palindrome.html",
-             text: "Palindrome",
-             index: 1
-         },
+         { href: "LetterInText.html", text: "LetterInText", index: 0 },
+         { href: "Palindrome.html", text: "Palindrome",index: 1},
          {
              href: "RandomeColor.html",
              text: "RandomeColor",
