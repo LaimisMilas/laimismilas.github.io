@@ -103,6 +103,7 @@ let Menu = {
          {href: "temp-mail.html",       text: "temp-mail",       index: 13},
          {href: "index.html",           text: "home",            index: 14},
 	 {href: "proporcijos.html",     text: "proportion",      index: 15},
-	 {href: "ajax-reguest.html",    text: "ajax-reguest",    index: 16}
+	 {href: "ajax-reguest.html",    text: "ajax-reguest",    index: 16},
+	 {href: "notes.html",           text: "notes",           index: 17}
      ]
  }
