@@ -1,42 +1,42 @@
 "devices": [
   {
     "name": "virdulys",
-    "title": "Virtuves virdulys"
+    "title": "Virtuves virdulys",
     "id": 1
   },
   {
     "name": "virykle",
-    "title": "Virykle"
+    "title": "Virykle",
     "id": 2
   },
   {
     "name": "saldytuvas",
-    "title": " Šaldytuvas"
+    "title": " Šaldytuvas",
     "id": 3
   },
   {
     "name": "boileris",
-    "title": " Vandens šildytuvas"
+    "title": " Vandens šildytuvas",
     "id": 4
   },
   {
     "name": "pc_laimonas",
-    "title": "PC Stacionaras"
+    "title": "PC Stacionaras",
     "id": 5
   },
   {
     "name": "tv_laimonas",
-    "title": "TV Stacionaras"
+    "title": "TV Stacionaras",
     "id": 6
   },
   {
     "name": "tv_salone",
-    "title": "TV Kambaryje"
+    "title": "TV Kambaryje",
     "id": 7
   },
   {
     "name": "tv_andzelos",
-    "title": "PC Andželos"
+    "title": "PC Andželos",
     "id": 8
   }
 ]
