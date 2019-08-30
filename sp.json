@@ -7,4 +7,14 @@
   {"name":"tv_laimonas","title":"TV Stacionaras",    "id": 6},
   {"name":"tv_salone",  "title":"TV Kambaryje",      "id": 7},
   {"name":"tv_andzelos","title":"PC Andželos",       "id": 8}
+],
+"devices_text":[
+  "Virtuvės virdulys",
+  "Viryklė",
+  "Šaldytuvas",
+  "Vandens šildytuvas",
+  "PC Stacionaras",
+  "TV Stacionaras",
+  "TV Kambaryje",
+  "PC Andželos"
 ]
