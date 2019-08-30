@@ -167,6 +167,10 @@ let Menu = {
 	     href: "proporcijos.html",
 	     text: "proportion",
 	     index: 15	 
+	 },{
+	     href: "ajax-reguest.html",
+	     text: "ajax-reguest",
+	     index: 16
 	 }
      ]
  }
