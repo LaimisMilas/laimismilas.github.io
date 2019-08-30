@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
+<head>
+<title>Tekstas</title>
+<link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
+<script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>
+</head>
 <body>
-
+<div id="menutabs"><div>
 <h2>The XMLHttpRequest Object</h2>
 
 <input type="text" id="urlInput" />
@@ -24,7 +29,14 @@ function loadDoc() {
   xhttp.send();
 }
 
+ Menu.tabs.forEach((item) => {
+     let el = Menu.elTmp();
+     el.href = item.href;
+     el.text = item.text;
+     document.getElementById("menutabs").appendChild(el);
+ });	
+	
 </script>
-
 </body>
+</html>
 </html>
