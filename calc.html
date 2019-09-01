@@ -243,6 +243,14 @@ function get(text, index){
 	
 	return result;
 }
+	
+function calcUserCalorys(){
+	
+	var a = getValue("mass_g");
+	var b = getValue("cells_c");
+	
+	printToElement("result_25", (a * b));
+}
 
 </script>
 </head>
@@ -325,11 +333,6 @@ E(J) = 30W × 3s = 90J <br/>
 </textarea>
 <p id="demo"></p>
 <script>
-function calcUserCalorys(){
-	var a = getValue("mass_g");
-	var b = getValue("cells_c");
-	printToElement("result_25", (a * b));
-}
 	
 function executeScript() {
   var codeToExecute = document.getElementById("codeEval").value;
