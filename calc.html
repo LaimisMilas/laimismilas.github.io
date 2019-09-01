@@ -291,6 +291,13 @@ E(J) = 30W × 3s = 90J <br/>
 4.184J - 1 calorija, 1g vandens pasildyti 1 laipsniu. <br/>
 4.184W x 1s = 4.184J<br/>
 </p>
+<div>
+	<input id="mass_g" type="text" value="1000"/>(g)
+	<input id="cells_c" type="text" value="20"/>(c)
+	<br/>
+	<button onclick="calcUserCalorys()">calcUserCalorys</button>
+	<p id="result_25"></p>
+<div/>	
 <p>1 year = 31556952000 milisecundes</p>
 <p>1 year = 31556952 secundes</p>	
 <p>1 year = 525949 minutes</p>
@@ -306,6 +313,11 @@ E(J) = 30W × 3s = 90J <br/>
 </textarea>
 <p id="demo"></p>
 <script>
+function calcUserCalorys(){
+	var a = getValue("mass_g");
+	var b = getValue("cells_c");
+	printToElement("result_25", (a * b));
+}
 	
 function executeScript() {
   var codeToExecute = document.getElementById("codeEval").value;
