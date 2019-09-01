@@ -74,6 +74,17 @@ function convertJoulToCal(){
 
 	printToElement("result_24", result);
 }
+	
+function convertJoulToKwh(){
+
+	var jouls = getValue("joul_1");
+
+	var result = (jouls / 3600) / 1000;
+
+	result = result + " kwh";
+
+	printToElement("result_24", result);
+}	
 
 function calc(){
 	
@@ -253,6 +264,7 @@ function get(text, index){
 	Joul:<input id="joul_1" type="text" value="20000"/>
 	<br/>
 	<button onclick="convertJoulToCal()">convert joul to cal</button>
+	<button onclick="convertJoulToKwh()">convert joul to kwh</button>
 	<p id="result_24"></p>
 <div/>
 <div>
