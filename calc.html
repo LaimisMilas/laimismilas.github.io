@@ -248,8 +248,9 @@ function calcUserCalorys(){
 	
 	var a = getValue("mass_g");
 	var b = getValue("cells_c");
+	var result = (a * b);
 	
-	printToElement("result_35", (a * b));
+	printToElement("result_35", toNumber(result, 2));
 }
 
 </script>
