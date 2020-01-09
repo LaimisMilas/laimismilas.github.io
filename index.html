@@ -1,48 +1,31 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Home</title>
-		<link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
-		<script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>
-	</head>
-	<body>
-		<div id="header">
-			<div id="log">
-			</div><!--log end -->
-			<div id="menutabs"><div>
-		</div><!--header end -->
-		<div id="main">
-			<div id="sidebar">
-			</div><!--sidebar end -->
-			<div id="content">
-				<p>
-					Kur aš laikau savo kodą?. Versiju kontrolės sistemoje - 
-					<a href="https://github.com/LaimisMilas">GitHub</a>
-				</p>
-				<p>
-					Reikia nepamiršti kad yra toks - 
-					<a href="https://app.swaggerhub.com/home">swaggerhub.com</a>
-					Leidžia sukurti mini servisus kurie neturi logikos, tiesiog gražina reikšmes.
-					Puikia tinka užklausų testavimams. Mocking API. Paslauga nemokama, apribojimas iki 10 užklausų per minutę.
-				</p>
-				<p>
-					Reikia nepamiršti kad yra toks - 
-					<a href="https://rapidapi.com/">rapidapi.com</a>
-					Įdomus projektas, leidžia susikurti Servisus, pagal swagger scriptus ir savarankiškai.
-				</p>
-			</div><!--content end -->
-		</div><!--main end -->
-		<div id="footer">
-			<span>Author:</span><span>Laimonas Milasius 2019</span>
-		</div><!--footer end -->
-		<script>
-			 Menu.tabs.forEach((item) => {
-     				let el = Menu.elTmp();
-     				el.href = item.href;
-     				el.text = item.text;
-     				document.getElementById("menutabs").appendChild(el);
- 			});
-		</script>
-	</body>
-</html>
 
+<head>
+	<title>Home - L.M.</title>
+	<link rel="stylesheet" type="text/css" href="./style.css" />
+	<script type="text/javascript" src="./utils.js"></script>
+</head>
+
+<body>
+	<div id="header">
+	</div>
+	<div id="main">
+		<div><code>public class Profile {</code></div></br>
+			<div>&nbsp;&nbsp;<code>public static final String name = "Laimonas";</code></div></br>
+			<div>&nbsp;&nbsp;<code>public static final String lastname = "Milasius";</code></div></br>
+			<div>&nbsp;&nbsp;<code>public static final Date birthDay = new Date("1978-02-27");</code></div></br>
+			<div>&nbsp;&nbsp;<code>public static final String nativeLanguage = "JAVA";</code></div></br>
+			<div>&nbsp;&nbsp;<code>public static Map<String, String> style = new HasMap<String, String>();</code></div></br>
+			<div>&nbsp;&nbsp;<code>static {</code></div></br>
+				<div>&nbsp;&nbsp;&nbsp;&nbsp;<code>style.add("Grunge","40%");</code></div></br>
+				<div>&nbsp;&nbsp;&nbsp;&nbsp;<code>style.add("Hipster Light","20%");</code></div></br>
+				<div>&nbsp;&nbsp;&nbsp;&nbsp;<code>style.add("Military","20%");</code></div></br>
+				<div>&nbsp;&nbsp;&nbsp;&nbsp;<code>style.add("Cosual","10%");</code></div></br>
+				<div>&nbsp;&nbsp;<code>}</code></div></br>
+		<div><code>}</code></div>
+	</div>
+	<div id="footer">
+	</div>
+</body>
+</html>
