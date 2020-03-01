@@ -9,13 +9,14 @@
 
 <body>
 	<div id="header">
+		<div><h id="result"></h> diena, planetoje Žemė.</div>
 	</div>
 	<div id="main">
 		<div><code>public class Profile {</code></div></br>
-			<div>&nbsp;&nbsp;<code>public static final String name = "Laimonas";</code></div></br>
-			<div>&nbsp;&nbsp;<code>public static final String lastname = "Milasius";</code></div></br>
-			<div>&nbsp;&nbsp;<code>public static final Date birthDay = new Date("1978-02-27");</code></div></br>
-			<div>&nbsp;&nbsp;<code>public static final String nativeLanguage = "JAVA";</code></div></br>
+			<div>&nbsp;&nbsp;<code>public String name = "Laimonas";</code></div></br>
+			<div>&nbsp;&nbsp;<code>public String lastname = "Milašius";</code></div></br>
+			<div>&nbsp;&nbsp;<code>public final Date birthDay = new Date("1978-02-27");</code></div></br>
+			<div>&nbsp;&nbsp;<code>public String nativeLanguage = "JAVA";</code></div></br>
 			<div>&nbsp;&nbsp;<code>public static Map<String, String> style = new HasMap<String, String>();</code></div></br>
 			<div>&nbsp;&nbsp;<code>static {</code></div></br>
 				<div>&nbsp;&nbsp;&nbsp;&nbsp;<code>style.add("Grunge","40%");</code></div></br>
@@ -23,9 +24,61 @@
 				<div>&nbsp;&nbsp;&nbsp;&nbsp;<code>style.add("Military","20%");</code></div></br>
 				<div>&nbsp;&nbsp;&nbsp;&nbsp;<code>style.add("Cosual","10%");</code></div></br>
 				<div>&nbsp;&nbsp;<code>}</code></div></br>
-		<div><code>}</code></div>
+		<div><code>}</code></div></br>
 	</div>
 	<div id="footer">
+		Šendiena nusižys 3 lietuvos piliečia, nuo metu pradžios <h id="deff"></h> jau tai padarė.
 	</div>
+	<script>
+
+		function calcDiff() {
+			let valueFrom = new Date("1978-02-27").getTime();
+			let valueTo = new Date().getTime();
+			let el = document.getElementById("result");
+			let result = valueTo - valueFrom;
+			el.innerHTML = Math.round(result / 1000 / 60 / 60 / 24);
+		}
+
+		function calcDef() {
+			let valueFrom = new Date("2020-01-01").getTime();
+			let valueTo = new Date().getTime();
+			let el = document.getElementById("deff");
+			let result = valueTo - valueFrom;
+			el.innerHTML = Math.round((result / 1000 / 60 / 60 / 24)*3);
+		}
+
+		calcDiff();
+		calcDef();
+	
+		function parseTime(s) {
+			var part = s.match(/(\d+):(\d+)(?: )?(am|pm)?/i);
+			var hh = parseInt(part[1], 10);
+			var mm = parseInt(part[2], 10);
+			var ap = part[3] ? part[3].toUpperCase() : null;
+			if (ap === "AM") {
+				if (hh == 12) {
+					hh = 0;
+				}
+			}
+			if (ap === "PM") {
+				if (hh != 12) {
+					hh += 12;
+				}
+			}
+			return { hh: hh, mm: mm };
+		}
+	
+		parseTime("12:00 AM"); // {hh:  0, mm: 0}
+		parseTime("12:00 PM"); // {hh: 12, mm: 0}
+		parseTime("01:00 PM"); // {hh: 13, mm: 0}
+		parseTime("23:00");
+		
+		 Menu.tabs.forEach((item) => {
+		 let el = Menu.elTmp();
+		 el.href = item.href;
+		 el.text = item.text;
+		 document.getElementById("menutabs").appendChild(el);
+	 });
+	</script>
 </body>
 </html>
