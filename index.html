@@ -68,12 +68,12 @@
 		parseTime("01:00 PM"); // {hh: 13, mm: 0}
 		parseTime("23:00");
 		
-		 Menu.tabs.forEach((item) => {
-		 let el = Menu.elTmp();
-		 el.href = item.href;
-		 el.text = item.text;
-		 document.getElementById("menutabs").appendChild(el);
-	 });
+		Menu.tabs.forEach((item) => {
+			let el = Menu.elTmp();
+			el.href = item.href;
+			el.text = item.text;
+			document.getElementById("menutabs").appendChild(el);
+	 	});
 	</script>
 </body>
 </html>
