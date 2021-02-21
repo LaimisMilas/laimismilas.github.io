@@ -36,24 +36,14 @@
 	</div>
 	<script>
 
-		function calcDiff() {
-			let valueFrom = new Date("1978-02-27").getTime();
+		function calcDiff(dateText) {
+			let valueFrom = new Date(dateText).getTime();
 			let valueTo = new Date().getTime();
-			let el = document.getElementById("result");
-			let result = valueTo - valueFrom;
-			el.innerHTML = Math.round(result / 1000 / 60 / 60 / 24);
+			return valueTo - valueFrom;
 		}
 
-		function calcDef() {
-			let valueFrom = new Date("2021-01-01").getTime();
-			let valueTo = new Date().getTime();
-			let el = document.getElementById("deff");
-			let result = valueTo - valueFrom;
-			el.innerHTML = Math.round((result / 1000 / 60 / 60 / 24)*3);
-		}
-
-		calcDiff();
-		calcDef();
+		document.getElementById("result").innerHTML = Math.round(calcDiff("1978-02-27") / 1000 / 60 / 60 / 24);
+		document.getElementById("deff").innerHTML = Math.round((calcDiff("2021-01-01") / 1000 / 60 / 60 / 24)*3);
 	
 		function parseTime(s) {
 			var part = s.match(/(\d+):(\d+)(?: )?(am|pm)?/i);
