@@ -245,12 +245,13 @@ function get(text, index){
 }
 	
 function calcUserCalorys(){
-	
 	var a = getValue("mass_g");
 	var b = getValue("cells_c");
 	var result = (a * b);
-	
-	printToElement("result_35", toNumber(result, 2) + "cal." );
+	//4.184J - 1 calorija
+	var j = 4.184;
+	var jouls = result/j;
+	printToElement("result_35", toNumber(result, 2) + "cal.. Jouls: " + jouls );
 }
 
 </script>
