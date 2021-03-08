@@ -253,6 +253,21 @@ function calcUserCalorys(){
 	printToElement("result_24", result);
 	printToElement("result_35", toNumber(result, 2) + "cal., Jouls: " + toNumber(jouls, 2) + "J., Kwh: " + kwh);
 }
+	
+  function secToHours(sec) {
+	 var sec = sec.toString().replace(/[^\d\.eE-]/g,'');
+	 if (sec/3600 != 0) {
+	    sec = sec/3600;
+	 }
+	 return sec;
+   }
+   function hoursToSec(sec) {
+	 var sec = sec.toString().replace(/[^\d\.eE-]/g,'');
+	 if (sec*3600 != 0) {
+	    sec = sec*3600;
+	 }
+	 return sec; 
+   }
 
 </script>
 </head>
