@@ -19,9 +19,7 @@ function convertKwh(){
 
 	var kwh = getValue("kwatt_1");
 	var minutes = getValue("minutes_2");
-
 	var result = kwhToWatts(kwh, minutes);
-
 	result = result + " watts";
 
 	printToElement("result_23", result);
@@ -31,11 +29,17 @@ function convertWattsToKwh(){
 
 	var watts = getValue("watt_3");
 	var secunds = getValue("minutes_1");
-
 	var result = wattsToKwh(watts, secunds);
 
 	printToElement("result_22", result);
 }
+	
+function convertWattHoursToCallorys(){
+	var watts = getValue("watt_hours");
+	var result = wattHourToCallory(watts);
+	
+	printToElement("result_26", result + "cal.");
+}	
 
 // Kokiu galingumu buvo sildoma?
 function usedPower(){
@@ -119,6 +123,10 @@ function init(){
 	minDiff = timeDiff(sTimeStart,sTimeEnd);
 
 }
+	
+function wattsToJoul(watts, sec){
+	return watts * sec;
+}	
 
 function kwhToJoul(kwh){
 
@@ -199,6 +207,14 @@ function kwhToWatts(kwh, minutes){
 	return toNumber(result, 2);
 
 }
+	
+function wattHourToKwH(wattHour){
+	return 	wattHour / 1000;
+}
+	
+function wattHourToCallory(wattHours){
+	return wattHours * 860.42065;
+}	
 
 function timeDiff(start,end){
 
@@ -280,7 +296,13 @@ function calcUserCalorys(){
 		<div id="main">
 			<div id="sidebar">
 			</div>
-			<div id="content">	
+			<div id="content">
+				<div>
+	Watt-hours:<input id="watt_hours" type="text" value="2000"/>
+	<br/>
+	<button onclick="convertWattHoursToCallorys()">convert calorrys</button>
+	<p id="result_26"></p>
+<div/>
 <div>
 	Kwh:<input id="kwatt_2" type="text" value="2000"/>
 	<br/>
@@ -329,6 +351,8 @@ E(J) = 30W × 3s = 90J <br/>
 1kWh = 1000W x 3600s = 3 600 000 Ws = 3 600 000 J, <br/>
 4.184J - 1 calorija, 1g vandens pasildyti 1 laipsniu. <br/>
 4.184W x 1s = 4.184J<br/>
+watt-hours = calories × 0.001162<br/>
+calories = watt-hours × 860.42065<br/>	
 </p>
 <div>
 	<input id="mass_g" type="text" value="1000"/>(g)
