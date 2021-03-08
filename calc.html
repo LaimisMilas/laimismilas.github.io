@@ -30,9 +30,9 @@ function convertKwh(){
 function convertWattsToKwh(){
 
 	var watts = getValue("watt_3");
-	var minutes = getValue("minutes_1");
+	var secunds = getValue("minutes_1");
 
-	var result = wattsToKwh(watts, minutes);
+	var result = wattsToKwh(watts, secunds);
 
 	printToElement("result_22", result);
 }
@@ -176,15 +176,11 @@ function wattsToKw(watts){
 
 }
 
-function wattsToKwh(watts, minutes){
+function wattsToKwh(watts, secunds){
 
-	var result = (watts * minutes) / 1000;
+	var result = watts / 1000;
 
-	result = watts * minutes;
-
-	result = result / 60; 
-
-	result = result / 1000;
+	result = result * (secunds / 3600);
 
 	result = toNumber(result, 2);
 	
@@ -290,7 +286,7 @@ function calcUserCalorys(){
 <div/>
 <div>
 	Power in watts:<input id="watt_3" type="text" value="2000"/>
-	Used minutes:<input id="minutes_1" type="text" value="120"/>
+	Used secunds:<input id="minutes_1" type="text" value="120"/>
 	<br/>
 	<button onclick="convertWattsToKwh()">convertWattsToKwh</button>
 	<p id="result_22"></p>
