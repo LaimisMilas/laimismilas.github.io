@@ -262,10 +262,10 @@ function get(text, index){
 function calcUserCalorys(){
 	var a = getValue("mass_g");
 	var b = getValue("cells_c");
-	var jouls = (a * b);
+	var calorrys = (a * b);
 	//4.184J - 1 calorija
 	var jConst = 4.184; 
-	var calorrys = jouls/jConst;
+	var jouls = calorrys/jConst;
 	var kwh = calorrys / 3600000;
 	kwh = kwh + " kwh";
 
