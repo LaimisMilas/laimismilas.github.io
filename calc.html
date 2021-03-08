@@ -265,8 +265,8 @@ function calcUserCalorys(){
 	var calorrys = (a * b);
 	//4.184J - 1 calorija
 	var jConst = 4.184; 
-	var jouls = calorrys*jConst;
-	var kwh = (jouls * 0.000278) / 1000;
+	var jouls = calorrys * jConst;
+	var kwh = (jouls / 3600) / 1000;
 	kwh = kwh + " kwh";
 
 	printToElement("result_24", result);
