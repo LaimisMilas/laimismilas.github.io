@@ -239,19 +239,21 @@ function get(text, index){
 	
 	return result;
 }
-	
+	// 1g - 1c - 1J
+	// 1 cal = 0.001162 Wh
+	// 44,000 cal = 51.137778 Wh
 function calcUserCalorys(){
 	var a = getValue("mass_g");
 	var b = getValue("cells_c");
-	var result = (a * b);
+	var jouls = (a * b);
 	//4.184J - 1 calorija
-	var j = 4.184;
-	var jouls = result/j;
-	var kwh = (jouls / 3600) / 1000;
+	var jConst = 4.184; 
+	var calorrys = joules/jConst;
+	var kwh = calorrys / 3600000;
 	kwh = kwh + " kwh";
 
 	printToElement("result_24", result);
-	printToElement("result_35", toNumber(result, 2) + "cal., Jouls: " + toNumber(jouls, 2) + "J., Kwh: " + kwh);
+	printToElement("result_35", toNumber(calorrys, 2) + "cal., Jouls: " + toNumber(jouls, 2) + "J., Kwh: " + kwh);
 }
 	
   function secToHours(sec) {
