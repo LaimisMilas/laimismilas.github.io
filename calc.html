@@ -197,9 +197,9 @@ function calcUserCalorys(){
 	var jConst = 4.184; 
 	var jouls = calorrys * jConst;
 	var kwh = (jouls / 3600) / 1000;
-	kwh = kwh + " kwh";
+	kwh = toNumber(kwh, 2) + " kwh";
 	printToElement("result_24", result);
-	printToElement("result_35", toNumber(calorrys, 2) + "cal., Jouls: " + toNumber(jouls, 2) + "J., Kwh: " + toNumber(kwh, 2));
+	printToElement("result_35", toNumber(calorrys, 2) + "cal., Jouls: " + toNumber(jouls, 2) + "J., Kwh: " + kwh);
 }
 	
   function secToHours(sec) {
