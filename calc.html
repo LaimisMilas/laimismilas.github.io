@@ -216,6 +216,10 @@ function calcUserCalorys(){
 	 }
 	 return sec; 
    }
+	
+function convertToCelsius() {
+	printToElement("result_32",(getValue("jouls_32")/getValue("grams_32"))/getValue("capacity_32"));
+}
 
 </script>
 </head>
@@ -278,6 +282,14 @@ function calcUserCalorys(){
 		<br/>
 		<button onclick="calcUserCalorys()">Calc User Calorys</button>
 		<p id="result_35"></p>
+	<div/>
+	<div>
+		<input id="jouls_32" type="text" value="450000"/>(J)
+		<input id="grams_32" type="text" value="2000"/>(g)
+		<input id="capacity_32" type="text" value="4.186"/>(J/gk)
+		<br/>
+		<button onclick="convertToCelsius()">Convert To Celsius</button>
+		<p id="result_32"></p>
 	<div/>	
 	<p>
 		1 W = 0.001 kW<br/> 
@@ -294,6 +306,9 @@ function calcUserCalorys(){
 		1 J    = 2.7778E-7 kWh<br/>
 		1 Litre of propane =  7.080 kWh or 24000 BTU/h</br>
 		1 kg of propane    = 14.019 kWh or 47300 BTU/h</br>
+		2500W * 180sec = 450000J</br>
+		4.186J/gK - vandes silumine talpa</br>
+		(450000J/2000g)/4.186J/gK = 53.8C</br>
 	</p>
 	<p>
 		1 year = 31556952000 milisecundes<br/>
@@ -314,6 +329,7 @@ function calcUserCalorys(){
 	<textarea row=10 id="codeEval">
 	</textarea>
 	<p id="demo"></p>
+		
 	<script>
 		function executeScript() {
 		  var codeToExecute = document.getElementById("codeEval").value;
