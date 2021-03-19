@@ -28,7 +28,7 @@ function convertWattsToKwh(){
 	var watts = getValue("watt_3");
 	var secunds = getValue("minutes_1");
 	var result = wattsToKwh(watts, secunds);
-	printToElement("result_22", result +"(kWh), " + kwhToJoul(result) + "(J)");
+	printToElement("result_22", result + "(kWh), " + kwhToJoul(result) + "(J)");
 }
 	
 function convertWattHoursToCallorys(){
@@ -40,7 +40,7 @@ function convertWattHoursToCallorys(){
 function convertKwhToJoul(){
 	var kwh = getValue("kwatt_2");
 	var result = kwhToJoul(kwh);
-	result = result + " J";
+	result = result + "(J)";
 	printToElement("result_25", result);
 }
 
@@ -138,8 +138,7 @@ function wattsToKw(watts){
 function wattsToKwh(watts, secunds){
 	var result = watts / 1000;
 	result = result * (secunds / 3600);
-	result = toNumber(result, 2);
-	return result + "(kWh)";
+	return result;
 }
 
 function kwhToWatts(kwh, minutes){
