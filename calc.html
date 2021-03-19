@@ -20,7 +20,7 @@ function convertKwh(){
 	var kwh = getValue("kwatt_1");
 	var minutes = getValue("minutes_2");
 	var result = kwhToWatts(kwh, minutes);
-	result = result + " watts";
+	result = result + "(W)";
 	printToElement("result_23", result);
 }
 
@@ -34,14 +34,14 @@ function convertWattsToKwh(){
 function convertWattHoursToCallorys(){
 	var watts = getValue("watt_hours");
 	var result = wattHourToCallory(watts);
-	printToElement("result_26", result + "cal.");
+	printToElement("result_26", result + "(cal)");
 }	
 
 // Kokiu galingumu buvo sildoma?
 function usedPower(){
 	init();
 	var result = kwhToWatts(kwhDiff, minDiff);
-	result = "Used power: " + toNumber(result, 2) + " watts";
+	result = "Used power: " + toNumber(result, 2) + "(W)";
 	printToElement("used_power", result); 
 }
 
@@ -58,25 +58,25 @@ function convertKwhToJoul(){
 function convertJoulToCal(){
 	var jouls = getValue("joul_1");
 	var result = joulsToCol(jouls);
-	result = result + " cal";
+	result = result + "(cal)";
 	printToElement("result_24", result);
 }
 	
 function convertJoulToKwh(){
 	var jouls = getValue("joul_1");
 	var result = joulsToKwH(jouls);
-	result = result + " kwh";
+	result = result + "(kWh)";
 	printToElement("result_24", result);
 }	
 
 function calc(){
 	init();
-	var result = kwhDiff + "kwh, " + minDiff + "min. ";
+	var result = kwhDiff + "(kWh), " + minDiff + "(min) ";
 	printToElement("result", result);
 	var a = kwhToWatts(kwhDiff, minDiff);
 	a = wattsToKw(a);
 	var b = minutesToTime(minDiff);
-	result = a + "kw, " + b;
+	result = a + "(kW), " + b;
 	printToElement("result_1", result);
 
 }
@@ -130,7 +130,7 @@ function meterDiff(start, end){
 function minutesToTime(minDiff){
 	var hh = Math.trunc(minDiff/60);
 	var mm = minDiff % 60;
-	var result = hh + "val. "+ mm + "min. "; 
+	var result = hh + "(val) "+ mm + "(min) "; 
 	return result;
 }
 
@@ -143,7 +143,7 @@ function wattsToKwh(watts, secunds){
 	var result = watts / 1000;
 	result = result * (secunds / 3600);
 	result = toNumber(result, 2);
-	return result + " kwh";
+	return result + "(kWh)";
 }
 
 function kwhToWatts(kwh, minutes){
@@ -194,8 +194,8 @@ function calcUsedEnergy(){
 	var calorrys = (a * b);
 	var jouls = calorrys * c;
 	var kwh = (jouls / 3600) / 1000;
-	kwh = toNumber(kwh, 2) + " kwh";
-	printToElement("result_35", toNumber(calorrys, 2) + "cal., Jouls: " + toNumber(jouls, 2) + "J., Kwh: " + kwh);
+	kwh = toNumber(kwh, 2) + "(kWh)";
+	printToElement("result_35", toNumber(calorrys, 2) + "(cal), Jouls: " + toNumber(jouls, 2) + "(J)., kWh: " + kwh);
 }
 
 function secToHours(sec) {
