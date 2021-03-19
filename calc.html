@@ -28,7 +28,7 @@ function convertWattsToKwh(){
 	var watts = getValue("watt_3");
 	var secunds = getValue("minutes_1");
 	var result = wattsToKwh(watts, secunds);
-	printToElement("result_22", result);
+	printToElement("result_22", result +"(kWh), " + kwhToJoul(result) + "(J)");
 }
 	
 function convertWattHoursToCallorys(){
@@ -36,17 +36,6 @@ function convertWattHoursToCallorys(){
 	var result = wattHourToCallory(watts);
 	printToElement("result_26", result + "(cal)");
 }	
-
-// Kokiu galingumu buvo sildoma?
-function usedPower(){
-	init();
-	var result = kwhToWatts(kwhDiff, minDiff);
-	result = "Used power: " + toNumber(result, 2) + "(W)";
-	printToElement("used_power", result); 
-}
-
-// Kiek laipsniu buvo pakelta temperatura?
-// Kiek litru vandens buvo pasildyta?
 
 function convertKwhToJoul(){
 	var kwh = getValue("kwatt_2");
@@ -69,6 +58,13 @@ function convertJoulToKwh(){
 	printToElement("result_24", result);
 }	
 
+function usedPower(){
+	init();
+	var result = kwhToWatts(kwhDiff, minDiff);
+	result = "Used power: " + toNumber(result, 2) + "(W)";
+	printToElement("used_power", result); 
+}
+	
 function calc(){
 	init();
 	var result = kwhDiff + "(kWh), " + minDiff + "(min) ";
