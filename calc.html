@@ -186,36 +186,33 @@ function get(text, index){
 	result = Number(result[index]); 
 	return result;
 }
-	// 1g - 1c - 1J
-	// 1 cal = 0.001162 Wh
-	// 44,000 cal = 51.137778 Wh
-function calcUserCalorys(){
+	
+function calcUsedEnergy(){
 	var a = getValue("mass_g");
 	var b = getValue("cells_c");
+	var c = getValue("capacity_35");
 	var calorrys = (a * b);
-	//4.184J - 1 calorija
-	var jConst = 4.184; 
-	var jouls = calorrys * jConst;
+	var jouls = calorrys * c;
 	var kwh = (jouls / 3600) / 1000;
 	kwh = toNumber(kwh, 2) + " kwh";
-	printToElement("result_24", result);
 	printToElement("result_35", toNumber(calorrys, 2) + "cal., Jouls: " + toNumber(jouls, 2) + "J., Kwh: " + kwh);
 }
-	
-  function secToHours(sec) {
-	 var sec = sec.toString().replace(/[^\d\.eE-]/g,'');
-	 if (sec/3600 != 0) {
-	    sec = sec/3600;
-	 }
-	 return sec;
-   }
-   function hoursToSec(sec) {
-	 var sec = sec.toString().replace(/[^\d\.eE-]/g,'');
-	 if (sec*3600 != 0) {
-	    sec = sec*3600;
-	 }
-	 return sec; 
-   }
+
+function secToHours(sec) {
+	var sec = sec.toString().replace(/[^\d\.eE-]/g,'');
+	if (sec/3600 != 0) {
+		sec = sec/3600;
+	}
+	return sec;
+}
+
+function hoursToSec(sec) {
+	var sec = sec.toString().replace(/[^\d\.eE-]/g,'');
+	if (sec*3600 != 0) {
+		sec = sec*3600;
+	}
+	return sec; 
+}
 	
 function convertToCelsius() {
 	printToElement("result_32",toNumber((getValue("jouls_32")/getValue("grams_32"))/getValue("capacity_32"), 2) + " Celsius");
@@ -279,14 +276,15 @@ function convertToCelsius() {
 	<div>
 		<input id="mass_g" type="text" value="1"/>(g)
 		<input id="cells_c" type="text" value="1"/>(c)
+		<input id="capacity_35" type="text" value="4.186"/>(J/(g·K))
 		<br/>
-		<button onclick="calcUserCalorys()">Calc Used Energy</button>
+		<button onclick="calcUsedEnergy()">Calc Used Energy</button>
 		<p id="result_35"></p>
 	<div/>
 	<div>
 		<input id="jouls_32" type="text" value="450000"/>(J)
 		<input id="grams_32" type="text" value="2000"/>(g)
-		<input id="capacity_32" type="text" value="4.186"/>(J/gk)
+		<input id="capacity_32" type="text" value="4.186"/>(J/(g·K))
 		<br/>
 		<button onclick="convertToCelsius()">Convert To Celsius</button>
 		<p id="result_32"></p>
@@ -303,9 +301,9 @@ function convertToCelsius() {
 		1 cal. = 0.001162(Wh)<br/>
 		1 cal. = 1.1622E-6(kWh)<br/>
 		1 cal. = 4.184 (J)<br/>
-		1 J    = 2.7778E-7(kWh)<br/>
+		1(J)    = 2.7778E-7(kWh)<br/>
 		1 Litre of propane =  7.080(kWh) or 24000 BTU/h</br>
-		1 kg of propane    = 14.019(kWh) or 47300 BTU/h</br>
+		1(kg) of propane    = 14.019(kWh) or 47300 BTU/h</br>
 		K = °C + 273,15</br>
 		2500(W) * 180(sec) = 450000(J)</br>
 		(450000(J) / 2000(g)) / 4.186(J/(g·K)) = 53.8(C)</br>
@@ -319,7 +317,7 @@ function convertToCelsius() {
 		<a href="http://www.unitconversion.org/unit_converter/time-ex.html">Laiko konverteriai</a><br/>
 		<a href="https://www.inchcalculator.com/convert/calorie-to-watt-hour/">calorie-to-watt-hour</a><br/>
 		<a href="https://ohmslawcalculator.com/ohms-law-calculator">ohms-law-calculato</a><br/>
-		<a href="https://lt.wikipedia.org/wiki/%C5%A0iluminis_laidumas">siluminis_laidumas</a><br/>
+		<a href="https://lt.wikipedia.org/wiki/%C5%A0iluminis_laidumas">siluminis laidumas</a><br/>
 		<a href="https://en.wikipedia.org/wiki/Table_of_specific_heat_capacities">silumos talpumas</a><br/>
 	</p>
 	<p>Click the button to evaluate/execute JavaScript code/expressions.</p>
