@@ -17,35 +17,35 @@ var kwhDiff = 0;
 var minDiff = 0;
 
 function convertKwh(){
-	var kwh = getValue("kwatt_1");
-	var minutes = getValue("minutes_2");
+	var kwh = getValue("kwatt_23");
+	var minutes = getValue("minutes_23");
 	var result = kwhToWatts(kwh, minutes);
 	result = result + "(W)";
 	printToElement("result_23", result);
 }
 
 function convertWattsToKwh(){
-	var watts = getValue("watt_3");
-	var secunds = getValue("minutes_1");
+	var watts = getValue("watt_22");
+	var secunds = getValue("minutes_22");
 	var result = wattsToKwh(watts, secunds);
 	printToElement("result_22", result + "(kWh), " + kwhToJoul(result) + "(J)");
 }
 	
-function convertWattHoursToCallorys(){
-	var watts = getValue("watt_hours");
+function convertWhToCalories(){
+	var watts = getValue("watt_hours_26");
 	var result = wattHourToCallory(watts);
 	printToElement("result_26", result + "(cal)");
 }	
 
 function convertKwhToJoul(){
-	var kwh = getValue("kwatt_2");
+	var kwh = getValue("kwatt_25");
 	var result = kwhToJoul(kwh);
 	result = result + "(J)";
 	printToElement("result_25", result);
 }
 
 function convertJoulToCal(){
-	var jouls = getValue("joul_1");
+	var jouls = getValue("joul_24");
 	var result = joulsToCol(jouls);
 	result = result + "(cal)";
 	printToElement("result_24", result);
@@ -183,8 +183,8 @@ function get(text, index){
 }
 	
 function calcUsedEnergy(){
-	var a = getValue("mass_g");
-	var b = getValue("cells_c");
+	var a = getValue("mass_35");
+	var b = getValue("cells_35");
 	var c = getValue("capacity_35");
 	var calorrys = (a * b);
 	var jouls = calorrys * c;
@@ -223,34 +223,34 @@ function convertToCelsius() {
 			</div>
 <div id="content">
 	<div>
-		Wh:<input id="watt_hours" type="text" value="2000"/>
+		Wh:<input id="watt_hours_26" type="text" value="2000"/>
 		<br/>
-		<button onclick="convertWattHoursToCallorys()">Convert to Calorrys</button>
+		<button onclick="convertWhToCalories()">Convert to Calories</button>
 		<p id="result_26"></p>
 	<div/>
 	<div>
-		kWh:<input id="kwatt_2" type="text" value="2000"/>
+		kWh:<input id="kwatt_25" type="text" value="2000"/>
 		<br/>
 		<button onclick="convertKwhToJoul()">Convert kWh to Joul</button>
 		<p id="result_25"></p>
 	<div/>
 	<div>
-		Joul:<input id="joul_1" type="text" value="20000"/>
+		Joul:<input id="joul_24" type="text" value="20000"/>
 		<br/>
 		<button onclick="convertJoulToCal()">Convert Joul to Cal</button>
 		<button onclick="convertJoulToKwh()">Convert Joul to kWh</button>
 		<p id="result_24"></p>
 	<div/>
 	<div>
-		kWh:<input id="kwatt_1" type="text" value="2"/>
-		Used minutes:<input id="minutes_2" type="text" value="120"/>
+		kWh:<input id="kwatt_23" type="text" value="2"/>
+		Used minutes:<input id="minutes_23" type="text" value="120"/>
 		<br/>
 		<button onclick="convertKwh()">Calc. to Power</button>
 		<p id="result_23"></p>
 	<div/>
 	<div>
-		Power in Watts:<input id="watt_3" type="text" value="2000"/>
-		Used secunds:<input id="minutes_1" type="text" value="120"/>
+		Power in Watts:<input id="watt_22" type="text" value="2000"/>
+		Used secunds:<input id="minutes_22" type="text" value="120"/>
 		<br/>
 		<button onclick="convertWattsToKwh()">Convert Watts to kWh</button>
 		<p id="result_22"></p>
@@ -269,8 +269,8 @@ function convertToCelsius() {
 		<p id="used_power"></p>
 	<div/>
 	<div>
-		<input id="mass_g" type="text" value="1"/>(g)
-		<input id="cells_c" type="text" value="1"/>(&#8451;)
+		<input id="mass_35" type="text" value="1"/>(g)
+		<input id="cells_35" type="text" value="1"/>(&#8451;)
 		<input id="capacity_35" type="text" value="4.186"/>(J/(g·K))
 		<br/>
 		<button onclick="calcUsedEnergy()">Calc Used Energy</button>
