@@ -383,8 +383,8 @@ function hoursToSec(sec) {
 function secToMinutes(sec) {
 	var min;
 	sec = sec.toString().replace(/[^\d\.eE-]/g,'');
-	if (sec*60 != 0) {
-		min = sec*60;
+	if (sec/60 != 0) {
+		min = sec/60;
 	}
 	return min; 
 }
