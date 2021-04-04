@@ -264,8 +264,8 @@ function kwhToJoul(kwh){
 	return toNumber(result, 2);
 }
 	
-function juolesTokWh(joules, sec){
-	return joules/(1000*sec);
+function juolesToWatts(joules, sec){
+	return joules/sec;
 }
 	
 function joulsToKwH(jouls){
@@ -383,8 +383,8 @@ function hoursToSec(sec) {
 function convertToCelsius() {
 	printToElement("result_32",toNumber((getValue("jouls_32")/getValue("grams_32"))/getValue("capacity_32"), 2) + " Celsius");
 }
-function convertJoulesToKWh(){
-	printToElement("result_33", juolesTokWh(getValue("jouls_33"),getValue("sec_33")));
+function convertJuolesToWatts(){
+	printToElement("result_33", juolesToWatts(getValue("jouls_33"),getValue("sec_33")));
 }
 
 </script>
@@ -462,7 +462,7 @@ function convertJoulesToKWh(){
 		<input id="jouls_33" type="text" value="180000"/>(J)
 		<input id="sec_33" type="text" value="140"/>(s)
 		<br/>
-		<button onclick="convertJoulesToKWh()">Convert Joules To kWh</button>
+		<button onclick="convertJuolesToWatts()">Convert Joules To Watts</button>
 		<p id="result_33"></p>
 	<div/>
 	<p>	
