@@ -3,6 +3,164 @@
 <head>	
 <link rel="stylesheet" type="text/css" href="https://laimismilas.github.io/style.css" />
 <script type="text/javascript" src="https://laimismilas.github.io/utils.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+		function OnSelChange()
+		{
+			var i = document.calcform.awgsel.selectedIndex;
+			if( i==1 ) awg = "0000";
+			if( i==2 ) awg = "000";
+			if( i==3 ) awg = "00";
+			if( i>3 )  awg = i-4;
+			document.calcform.x.value = awg;
+		}
+		function OnCalc1()
+		{
+			n = document.calcform.x.value;
+			if( n=="0000" ) n=-3;
+			if( n=="000" )  n=-2;
+			if( n=="00" )   n=-1;
+			d = 0.127*Math.pow(92,((36-n)/39));
+			a = Math.PI/4*d*d;
+			document.calcform.d.value = d.toFixed(4);
+			document.calcform.a.value = a.toFixed(4);
+		}
+		function OnCalc2()
+		{
+			var d = document.calcform.d.value;
+			var n = -39*Math.log(d/0.127)/4.521788577+36;
+			n = Math.round(n);
+			if( n==-1 ) n="00";
+			if( n==-2 ) n="000";
+			if( n==-3 ) n="0000";
+			document.calcform.x.value = n;
+			OnCalc1();
+		}
+		function OnCalc3()
+		{
+			var a = document.calcform.a.value;
+			//d = 0.127*Math.pow(92,((36-n)/39));
+			//a = Math.PI/4*d*d;
+			var d = Math.sqrt(4*a/Math.PI);
+			var n = -39*Math.log(d/0.127)/4.521788577+36;
+			n = Math.round(n);
+			if( n==-1 ) n="00";
+			if( n==-2 ) n="000";
+			if( n==-3 ) n="0000";
+			document.calcform.x.value = n;
+			OnCalc1();
+		}
+		function OnCalc4()
+		{
+			var sum=0,sumin;
+			for(var i=2; i<=5; i++) {
+				var num = $("#intbl tr:nth-child("+i+") td input").val();
+				var n = $("#intbl tr:nth-child("+i+") td select").prop("selectedIndex");
+				if( n==0 ) continue;
+				n-=4;
+				//alert(num+" "+n);
+				//if( n=="0000" ) n=-3;
+				//if( n=="000" )  n=-2;
+				//if( n=="00" )   n=-1;
+				var d = 0.127*Math.pow(92,((36-n)/39));
+				var a = Math.PI/4*d*d;
+				sum+=num*a;
+			}
+			sumin = sum*0.00155;
+			$("#amm").val( sum.toFixed(4) );
+			$("#ain").val( sumin.toFixed(4) );
+		}
+	</script>
+	<form name="calcform" autocomplete="off">
+<table class="calc">
+<tbody><tr>
+<td colspan="2">Select gauge #:</td>
+</tr>
+<tr>
+<td><select name="awgsel" onchange="OnSelChange()" autofocus="">
+<option>AWG</option>
+<option>0000</option>
+<option>000</option>
+<option>00</option>
+<option>0</option>
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+<option>10</option>
+<option>11</option>
+<option>12</option>
+<option>13</option>
+<option>14</option>
+<option>15</option>
+<option>16</option>
+<option>17</option>
+<option>18</option>
+<option>19</option>
+<option>20</option>
+<option>21</option>
+<option>22</option>
+<option>23</option>
+<option>24</option>
+<option>25</option>
+<option>26</option>
+<option>27</option>
+<option>28</option>
+<option>29</option>
+<option>30</option>
+<option>31</option>
+<option>32</option>
+<option>33</option>
+<option>34</option>
+<option>35</option>
+<option>36</option>
+<option>37</option>
+<option>38</option>
+<option>39</option>
+<option>40</option>
+</select></td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td colspan="2">Enter gauge #:</td>
+</tr>
+<tr>
+<td class="math"><input type="number" step="1" name="x" class="intext"></td>
+<td class="mathsymbol">AWG</td>
+<td><button type="button" id="calc" title="Calculate" class="btn" onclick="OnCalc1()"><img src="/lib/icons/glyphicons_all/glyphicons_halflings/glyphicons_halflings_018_cog.png" alt=""> Calculate</button></td>
+</tr>
+<tr>
+<td colspan="3">Diameter in millimeters:</td>
+</tr>
+<tr>
+<td class="math"><input type="text" name="d" class="intext"></td>
+<td class="mathsymbol">mm</td>
+<td><button type="button" id="calc" title="Calculate" class="btn" onclick="OnCalc2()"><img src="/lib/icons/glyphicons_all/glyphicons_halflings/glyphicons_halflings_018_cog.png" alt=""> Calculate</button></td>
+</tr>
+<tr>
+<td colspan="3">Cross sectional area in square millimeters:</td>
+</tr>
+<tr>
+<td class="math"><input type="text" name="a" class="intext"></td>
+<td class="mathsymbol">mm<sup>2</sup></td>
+<td><button type="button" id="calc" title="Calculate" class="btn" onclick="OnCalc3()"><img src="/lib/icons/glyphicons_all/glyphicons_halflings/glyphicons_halflings_018_cog.png" alt=""> Calculate</button></td>
+</tr>
+<tr>
+<td colspan="2">&nbsp;</td>
+</tr>
+<tr>
+<td colspan="2">
+
+<button type="reset" id="reset" title="Reset" class="btn"><img src="/lib/icons/glyphicons_all/glyphicons_halflings/glyphicons_halflings_013_remove.png" alt=""> Reset</button>
+</td>
+</tr>
+</tbody></table>
+</form>
 
 <script src="./myscripts.js"></script>
 <script>
@@ -284,6 +442,11 @@ function convertToCelsius() {
 		<button onclick="convertToCelsius()">Convert To Celsius</button>
 		<p id="result_32"></p>
 	<div/>	
+	<p>	
+		Vatas – fizikinis vienetas kuriuo matuojama galia (P).
+		Vienas vatas – tai galia tokio proceso, kuris per 1 s atlieka 1 J (džaulio) darbą.
+		
+	<p/>	
 	<p>
 		1 V = 11 W/A (vatas amperui)<br/>
 		1(W) = 0.001(kW)<br/> 
