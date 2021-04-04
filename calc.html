@@ -193,9 +193,12 @@ function convertKwh(){
 
 function convertWattsToKwh(){
 	var watts = getValue("watt_22");
-	var secunds = getValue("minutes_22");
-	var result = wattsToKwh(watts, secunds);
-	printToElement("result_22", result + "(kWh), " + kwhToJoul(result) + "(J)");
+	var secunds = getValue("sec_22");
+	var result = wattsToKwh(watts, secunds) + "(kWh), ";
+	result = result + kwhToJoul(result) + "(J)";
+	result = result + secunds + " (Sec) or ";
+	result = result + secToMinutes(secunds) + " (Min)";
+	printToElement("result_22", result);
 }
 	
 function convertWhToCalories(){
@@ -436,7 +439,7 @@ function convertJuolesToWatts(){
 	<div/>
 	<div>
 		Power in Watts:<input id="watt_22" type="text" value="2000"/>
-		Used secunds:<input id="minutes_22" type="text" value="120"/>
+		Used secunds:<input id="sec_22" type="text" value="120"/>
 		<br/>
 		<button onclick="convertWattsToKwh()">Convert Watts to kWh</button>
 		<p id="result_22"></p>
