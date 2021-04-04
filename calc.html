@@ -195,7 +195,7 @@ function convertWattsToKwh(){
 	var watts = getValue("watt_22");
 	var secunds = getValue("sec_22");
 	var result = wattsToKwh(watts, secunds) + "(kWh), ";
-	result = result + kwhToJoul(result) + "(J)";
+	result = result + kwhToJoul(wattsToKwh(watts, secunds)) + "(J)";
 	result = result + secunds + " (Sec) or ";
 	result = result + secToMinutes(secunds) + " (Min)";
 	printToElement("result_22", result);
