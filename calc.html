@@ -380,13 +380,22 @@ function hoursToSec(sec) {
 	return sec; 
 }
 	
+function secToMinutes(sec) {
+	var min;
+	sec = sec.toString().replace(/[^\d\.eE-]/g,'');
+	if (sec*60 != 0) {
+		min = sec*60;
+	}
+	return min; 
+}
+	
 function convertToCelsius() {
 	printToElement("result_32",toNumber((getValue("jouls_32")/getValue("grams_32"))/getValue("capacity_32"), 2) + " Celsius");
 }
 function convertJuolesToWatts(){
 	var result = juolesToWatts(getValue("jouls_33"), getValue("sec_33")) + " (W) ";
 	result = result + getValue("sec_33") + " (Sec) or ";
-	result = result + secToHours(getValue("sec_33")) + " (Min)";
+	result = result + secToMinutes(getValue("sec_33")) + " (Min)";
 	printToElement("result_33", result);
 }
 
