@@ -384,7 +384,10 @@ function convertToCelsius() {
 	printToElement("result_32",toNumber((getValue("jouls_32")/getValue("grams_32"))/getValue("capacity_32"), 2) + " Celsius");
 }
 function convertJuolesToWatts(){
-	printToElement("result_33", juolesToWatts(getValue("jouls_33"),getValue("sec_33")) + " (W)" );
+	var result = juolesToWatts(getValue("jouls_33"), getValue("sec_33")) + " (W) ";
+	result = result + getValue("sec_33") + " (Sec) or ";
+	result = result + secToHours(getValue("sec_33")) + " (Min)";
+	printToElement("result_33", result);
 }
 
 </script>
