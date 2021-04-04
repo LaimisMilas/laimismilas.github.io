@@ -58,10 +58,6 @@
 				var n = $("#intbl tr:nth-child("+i+") td select").prop("selectedIndex");
 				if( n==0 ) continue;
 				n-=4;
-				//alert(num+" "+n);
-				//if( n=="0000" ) n=-3;
-				//if( n=="000" )  n=-2;
-				//if( n=="00" )   n=-1;
 				var d = 0.127*Math.pow(92,((36-n)/39));
 				var a = Math.PI/4*d*d;
 				sum+=num*a;
@@ -72,96 +68,109 @@
 		}
 	</script>
 	<form name="calcform" autocomplete="off">
-<table class="calc">
-<tbody><tr>
-<td colspan="2">Select gauge #:</td>
-</tr>
-<tr>
-<td><select name="awgsel" onchange="OnSelChange()" autofocus="">
-<option>AWG</option>
-<option>0000</option>
-<option>000</option>
-<option>00</option>
-<option>0</option>
-<option>1</option>
-<option>2</option>
-<option>3</option>
-<option>4</option>
-<option>5</option>
-<option>6</option>
-<option>7</option>
-<option>8</option>
-<option>9</option>
-<option>10</option>
-<option>11</option>
-<option>12</option>
-<option>13</option>
-<option>14</option>
-<option>15</option>
-<option>16</option>
-<option>17</option>
-<option>18</option>
-<option>19</option>
-<option>20</option>
-<option>21</option>
-<option>22</option>
-<option>23</option>
-<option>24</option>
-<option>25</option>
-<option>26</option>
-<option>27</option>
-<option>28</option>
-<option>29</option>
-<option>30</option>
-<option>31</option>
-<option>32</option>
-<option>33</option>
-<option>34</option>
-<option>35</option>
-<option>36</option>
-<option>37</option>
-<option>38</option>
-<option>39</option>
-<option>40</option>
-</select></td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td colspan="2">Enter gauge #:</td>
-</tr>
-<tr>
-<td class="math"><input type="number" step="1" name="x" class="intext"></td>
-<td class="mathsymbol">AWG</td>
-<td><button type="button" id="calc" title="Calculate" class="btn" onclick="OnCalc1()"><img src="/lib/icons/glyphicons_all/glyphicons_halflings/glyphicons_halflings_018_cog.png" alt=""> Calculate</button></td>
-</tr>
-<tr>
-<td colspan="3">Diameter in millimeters:</td>
-</tr>
-<tr>
-<td class="math"><input type="text" name="d" class="intext"></td>
-<td class="mathsymbol">mm</td>
-<td><button type="button" id="calc" title="Calculate" class="btn" onclick="OnCalc2()"><img src="/lib/icons/glyphicons_all/glyphicons_halflings/glyphicons_halflings_018_cog.png" alt=""> Calculate</button></td>
-</tr>
-<tr>
-<td colspan="3">Cross sectional area in square millimeters:</td>
-</tr>
-<tr>
-<td class="math"><input type="text" name="a" class="intext"></td>
-<td class="mathsymbol">mm<sup>2</sup></td>
-<td><button type="button" id="calc" title="Calculate" class="btn" onclick="OnCalc3()"><img src="/lib/icons/glyphicons_all/glyphicons_halflings/glyphicons_halflings_018_cog.png" alt=""> Calculate</button></td>
-</tr>
-<tr>
-<td colspan="2">&nbsp;</td>
-</tr>
-<tr>
-<td colspan="2">
-
-<button type="reset" id="reset" title="Reset" class="btn"><img src="/lib/icons/glyphicons_all/glyphicons_halflings/glyphicons_halflings_013_remove.png" alt=""> Reset</button>
-</td>
-</tr>
-</tbody></table>
-</form>
-
+		<table class="calc">
+			<tbody>
+				<tr>
+					<td colspan="2">Select gauge #:</td>
+				</tr>
+				<tr>
+					<td>
+						<select name="awgsel" onchange="OnSelChange()" autofocus="">
+							<option>AWG</option>
+							<option>0000</option>
+							<option>000</option>
+							<option>00</option>
+							<option>0</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+							<option>13</option>
+							<option>14</option>
+							<option>15</option>
+							<option>16</option>
+							<option>17</option>
+							<option>18</option>
+							<option>19</option>
+							<option>20</option>
+							<option>21</option>
+							<option>22</option>
+							<option>23</option>
+							<option>24</option>
+							<option>25</option>
+							<option>26</option>
+							<option>27</option>
+							<option>28</option>
+							<option>29</option>
+							<option>30</option>
+							<option>31</option>
+							<option>32</option>
+							<option>33</option>
+							<option>34</option>
+							<option>35</option>
+							<option>36</option>
+							<option>37</option>
+							<option>38</option>
+							<option>39</option>
+							<option>40</option>
+						</select>
+					</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan="2">Enter gauge #:</td>
+				</tr>
+				<tr>
+					<td class="math"><input type="number" step="1" name="x" class="intext"></td>
+					<td class="mathsymbol">AWG</td>
+					<td>
+						<button type="button" id="calc" title="Calculate" class="btn" onclick="OnCalc1()">Calculate</button>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">Diameter in millimeters:</td>
+				</tr>
+				<tr>
+					<td class="math"><input type="text" name="d" class="intext">
+					</td>
+					<td class="mathsymbol">mm
+					</td>
+					<td>
+						<button type="button" id="calc" title="Calculate" class="btn" onclick="OnCalc2()">Calculate</button>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						Cross sectional area in square millimeters:
+					</td>
+				</tr>
+				<tr>
+					<td class="math"><input type="text" name="a" class="intext"></td>
+					<td class="mathsymbol">mm<sup>2</sup>
+					</td>
+					<td>
+						<button type="button" id="calc" title="Calculate" class="btn" onclick="OnCalc3()">Calculate</button>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">&nbsp;</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button type="reset" id="reset" title="Reset" class="btn">Reset</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
 <script src="./myscripts.js"></script>
 <script>
 
