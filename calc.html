@@ -398,7 +398,8 @@ function convertToCelsius() {
 function convertJuolesToWatts(){
 	var result = juolesToWatts(getValue("jouls_33"), getValue("sec_33")) + " (W) ";
 	result = result + getValue("sec_33") + " (Sec) or ";
-	result = result + secToMinutes(getValue("sec_33")) + " (Min)";
+	result = result + secToMinutes(getValue("sec_33")) + " (Min) or ";
+	result = result + secToHours(getValue("sec_33")) + " (Hours)";
 	printToElement("result_33", result);
 }
 
