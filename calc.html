@@ -183,14 +183,6 @@ var meterEnd = 0;
 var kwhDiff = 0;
 var minDiff = 0;
 
-function convertKwh(){
-	var kwh = getValue("kwatt_23");
-	var minutes = getValue("minutes_23");
-	var result = kwhToWatts(kwh, minutes);
-	result = result + "(W)";
-	printToElement("result_23", result);
-}
-
 function convertWattsToKwh(){
 	var watts = getValue("watt_22");
 	var secunds = getValue("sec_22");
@@ -424,20 +416,6 @@ function convertJuolesToWatts(){
 		<br/>
 		<button onclick="convertKwhToJoul()">Convert kWh to Joul</button>
 		<p id="result_25"></p>
-	<div/>
-	<div>
-		Joul:<input id="joul_24" type="text" value="20000"/>
-		<br/>
-		<button onclick="convertJoulToCal()">Convert Joul to Cal</button>
-		<button onclick="convertJoulToKwh()">Convert Joul to kWh</button>
-		<p id="result_24"></p>
-	<div/>
-	<div>
-		kWh:<input id="kwatt_23" type="text" value="2"/>
-		Used minutes:<input id="minutes_23" type="text" value="120"/>
-		<br/>
-		<button onclick="convertKwh()">Calc. to Power</button>
-		<p id="result_23"></p>
 	<div/>
 	<div>
 		Power in Watts:<input id="watt_22" type="text" value="2000"/>
