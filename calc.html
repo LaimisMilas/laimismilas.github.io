@@ -50,7 +50,8 @@
         
         function convertAhToWh(){
             var result = ahToWh(getValue("ah_34"), getValue("v_34"));
-            result = result + "(Wh)";
+            result = result + "(Wh) or ";
+            result = result + ahToWh(getValue("ah_34"), getValue("v_34"))/1000 + "(kWh)";
             printToElement("result_34", result);
         }
 
