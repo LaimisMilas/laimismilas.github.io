@@ -39,6 +39,12 @@
             result = result + "(J)";
             printToElement("result_25", result);
         }
+        
+        function convertAhToWh(){
+            var result = ahToWh(getValue("ah_34"), getValue("v_34"));
+            result = result + "(Wh)";
+            printToElement("result_34", result);
+        }
 
         function convertJoulToCal() {
             var jouls = getValue("joul_24");
@@ -86,6 +92,12 @@
         function wattsToJoul(watts, sec) {
             return watts * sec;
         }
+        
+         2Ah * 5V = 10Wh
+         
+        function ahToWh(ah, v){
+            return ah*v;
+        } 
 
         function kwhToJoul(kwh) {
             var constKwh = 3600000;
@@ -462,6 +474,14 @@
         <br/>
         <button onclick="convertJuolesToWatts()">Convert Joules To Watts</button>
         <p id="result_33"></p>
+    </div>
+    
+    <div>
+        <input id="ah_34" type="text" value="62"/>(ah)
+        <input id="v_34" type="text" value="140"/>(v)
+        <br/>
+        <button onclick="convertAhToWh()">Convert Ah To Wh</button>
+        <p id="result_34"></p>
     </div>
     <p>
         Vatas – fizikinis vienetas kuriuo matuojama galia (P).
