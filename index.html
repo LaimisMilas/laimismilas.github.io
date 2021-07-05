@@ -33,7 +33,7 @@
 				<div><code>}</code></div></br>
 	     </div>
 	<div id="footer">
-		Šendiena nusižudys 3 lietuvos piliečiai, nuo metu pradžios <h id="deff"></h> jau tai padarė.
+		Šendiena nusižudys 3 lietuvos piliečiai, nuo metu pradžios <h id="deff"></h> jau tai padarė. Liko, <h id="deff_left"></h> 
 	</div>
 	<script>
 
@@ -45,7 +45,8 @@
 
 		document.getElementById("result").innerHTML = Math.round(calcDiff("1978-02-27") / 1000 / 60 / 60 / 24);
 		document.getElementById("deff").innerHTML = Math.round((calcDiff("2021-01-01") / 1000 / 60 / 60 / 24)*3);
-	
+		document.getElementById("deff_left").innerHTML = 1000 - (Math.round((calcDiff("2021-01-01") / 1000 / 60 / 60 / 24)*3));
+		
 		function parseTime(s) {
 			var part = s.match(/(\d+):(\d+)(?: )?(am|pm)?/i);
 			var hh = parseInt(part[1], 10);
