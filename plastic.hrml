@@ -1,4 +1,22 @@
 
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Randome color</title>
+<style>
+html {height:100%} 
+body {min-height:100%}
+input[type=text] {width: 30px;}
+#space{
+min-height:100%
+}
+#control{
+float:right;
+width: 30%;
+}
+</style>
+</head>
+<body>
 <div class="right_pnl rytpnl" style="width: 40%;">
 <table class="viewcpct" cellspacing="0" cellpadding="0">
 <tbody>
