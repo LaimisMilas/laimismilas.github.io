@@ -1,1 +1,159 @@
 
+<div class="right_pnl rytpnl" style="width: 40%;">
+<table class="viewcpct" cellspacing="0" cellpadding="0">
+<tbody>
+<tr class="bgpinkclr">
+<td>MATERIAL</td>
+<td class="bgpinkclr">MELT TEMPERATURE RANGE (℃)</td>
+<td class="bgpinkclr">MOULD TEMPERATURE RANGE (℃)</td>
+</tr>
+<tr>
+<td>ABS</td>
+<td>190-270</td>
+<td>40-80</td>
+</tr>
+<tr>
+<td>ABS/PC ALLOY</td>
+<td>245-265</td>
+<td>40-80</td>
+</tr>
+<tr>
+<td>ACETAL</td>
+<td>180-210</td>
+<td>50-120</td>
+</tr>
+<tr>
+<td>ACRYLIC</td>
+<td>220-250</td>
+<td>50-80</td>
+</tr>
+<tr>
+<td>CAB</td>
+<td>170-240</td>
+<td>40-50</td>
+</tr>
+<tr>
+<td>HDPE</td>
+<td>210-270</td>
+<td>20-60</td>
+</tr>
+<tr>
+<td>LDPE</td>
+<td>180-240</td>
+<td>20-60</td>
+</tr>
+<tr>
+<td>NYLON 6</td>
+<td>230-290</td>
+<td>40-90</td>
+</tr>
+<tr>
+<td>NYLON 6 (30% GF)</td>
+<td>250-290</td>
+<td>50-90</td>
+</tr>
+<tr>
+<td>NYLON 6/6</td>
+<td>270-300</td>
+<td>40-90</td>
+</tr>
+<tr>
+<td>NYLON 6/6 (33% GF)</td>
+<td>280-300</td>
+<td>40-90</td>
+</tr>
+<tr>
+<td>NYLON 11</td>
+<td>220-250</td>
+<td>40-110</td>
+</tr>
+<tr>
+<td>NYLON 12</td>
+<td>190-200</td>
+<td>40-110</td>
+</tr>
+<tr>
+<td>PEEK</td>
+<td>350-390</td>
+<td>120-160</td>
+</tr>
+<tr>
+<td>POLYCARBONATE</td>
+<td>280-320</td>
+<td>85-120</td>
+</tr>
+<tr>
+<td>POLYESTER PBT</td>
+<td>240-275</td>
+<td>60-90</td>
+</tr>
+<tr>
+<td>PET (SEMI CRYSTALLINE)</td>
+<td>260-280</td>
+<td>20-30</td>
+</tr>
+<tr>
+<td>PET (AMORPHOUS)</td>
+<td>260-280</td>
+<td>20-30</td>
+</tr>
+<tr>
+<td>POLYPROPYLENE (COPOLYMER)</td>
+<td>200-280</td>
+<td>30-80</td>
+</tr>
+<tr>
+<td>POLYPROPYLENE (HOMOPOLYMER)</td>
+<td>200-280</td>
+<td>30-80</td>
+</tr>
+<tr>
+<td>POLYPROPYLENE (30% TALC FILLED)</td>
+<td>240-290</td>
+<td>30-50</td>
+</tr>
+<tr>
+<td>POLYPROPYLENE (30% GF)</td>
+<td>250-290</td>
+<td>40-80</td>
+</tr>
+<tr>
+<td>POLYSTYRENE</td>
+<td>170-280</td>
+<td>30-60</td>
+</tr>
+<tr>
+<td>POLYSTYRENE (30% GF)</td>
+<td>250-290</td>
+<td>40-80</td>
+</tr>
+<tr>
+<td>PVC P</td>
+<td>170-190</td>
+<td>20-40</td>
+</tr>
+<tr>
+<td>PVC U</td>
+<td>160-210</td>
+<td>20-60</td>
+</tr>
+<tr>
+<td>SAN</td>
+<td>200-260</td>
+<td>50-85</td>
+</tr>
+<tr>
+<td>SAN (30% GF)</td>
+<td>250-270</td>
+<td>50-70</td>
+</tr>
+<tr>
+<td>TPE</td>
+<td>260-320</td>
+<td>40-70</td>
+</tr>
+</tbody>
+</table>
+<h5 class="anonymus" style="margin-bottom: 0px; float: left;">IMPORTANT NOTICE AND DISCLAIMER IN RESPECT OF THE MATERIAL MELT &amp; MOULD TEMPERATURES CALCULATOR</h5>
+<p id="guide" style="float: left; margin-top: 5px;"><em>This information should be used as an 'on the spot' reference only. Users should always follow the <a href="https://www.plastikcity.co.uk/material-warehouse">material suppliers</a> processing data sheets. The data is provided “as is” and without any representation or warranty of any kind, including that it is fit for any purpose or of merchantable quality, or functions as intended or at all. Your use of this data is entirely at your own risk and PlastikCity accepts no liability of any kind.</em></p>
+</div>
