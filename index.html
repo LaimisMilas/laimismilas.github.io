@@ -36,7 +36,7 @@
 		<h id="result"></h> diena, planetoje Žemė.
 	</div>
 	<div id="footer">
-		Šendiena nusižudys 3 lietuvos piliečiai, nuo metu pradžios <h id="deff"></h> jau tai padarė. Liko, <h id="deff_left"></h>.
+		Šendiena.
 	</div>
 	<script>
 
@@ -47,9 +47,6 @@
 		}
 
 		document.getElementById("result").innerHTML = Math.round(calcDiff("1978-02-27") / 1000 / 60 / 60 / 24);
-		document.getElementById("deff").innerHTML = Math.round((calcDiff("2021-01-01") / 1000 / 60 / 60 / 24)*3);
-		document.getElementById("deff_left").innerHTML = 1000 - (Math.round((calcDiff("2021-01-01") / 1000 / 60 / 60 / 24)*3));
-		
 		function parseTime(s) {
 			var part = s.match(/(\d+):(\d+)(?: )?(am|pm)?/i);
 			var hh = parseInt(part[1], 10);
@@ -81,5 +78,6 @@
 	 	});
 	</script>
 <a href="https://www.timeanddate.com/astronomy/moon/light.html?day=11&month=1&year=2023&hour=03&min=46&sec=0&n=3527&ntxt=Klaip%C4%97da&earth=0">www.timeanddate.com/astronomy/moon/light</a>
+<div id="amzn-assoc-ad-f49c8629-661e-4637-bc51-2a8e5061e668"></div><script async src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US&adInstanceId=f49c8629-661e-4637-bc51-2a8e5061e668"></script>
 </body>
 </html>
