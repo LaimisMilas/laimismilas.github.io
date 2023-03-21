@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gauge Calc.</title>
+</head>
+<body>
+<script type="text/javascript">
+  function OnSelChange() {
+    var i = document.calcform.awgsel.selectedIndex;
+    if (i == 1) awg = "0000";
+    if (i == 2) awg = "000";
+    if (i == 3) awg = "00";
+    if (i > 3) awg = i - 4;
+    document.calcform.x.value = awg;
+  }
+
+  function OnCalc1() {
+    n = document.calcform.x.value;
+    if (n == "0000") n = -3;
+    if (n == "000") n = -2;
+    if (n == "00") n = -1;
+    d = 0.127 * Math.pow(92, ((36 - n) / 39));
+    a = Math.PI / 4 * d * d;
+    document.calcform.d.value = d.toFixed(4);
+    document.calcform.a.value = a.toFixed(4);
+  }
+
+  function OnCalc2() {
+    var d = document.calcform.d.value;
+    var n = -39 * Math.log(d / 0.127) / 4.521788577 + 36;
+    n = Math.round(n);
+    if (n == -1) n = "00";
+    if (n == -2) n = "000";
+    if (n == -3) n = "0000";
+    document.calcform.x.value = n;
+    OnCalc1();
+  }
+
+  function OnCalc3() {
+    var a = document.calcform.a.value;
+    //d = 0.127*Math.pow(92,((36-n)/39));
+    //a = Math.PI/4*d*d;
+    var d = Math.sqrt(4 * a / Math.PI);
+    var n = -39 * Math.log(d / 0.127) / 4.521788577 + 36;
+    n = Math.round(n);
+    if (n == -1) n = "00";
+    if (n == -2) n = "000";
+    if (n == -3) n = "0000";
+    document.calcform.x.value = n;
+    OnCalc1();
+  }
+
+  function OnCalc4() {
+    var sum = 0, sumin;
+    for (var i = 2; i <= 5; i++) {
+      var num = $("#intbl tr:nth-child(" + i + ") td input").val();
+      var n = $("#intbl tr:nth-child(" + i + ") td select").prop("selectedIndex");
+      if (n == 0) continue;
+      n -= 4;
+      var d = 0.127 * Math.pow(92, ((36 - n) / 39));
+      var a = Math.PI / 4 * d * d;
+      sum += num * a;
+    }
+    sumin = sum * 0.00155;
+    $("#amm").val(sum.toFixed(4));
+    $("#ain").val(sumin.toFixed(4));
+  }
+</script>
+<form name="calcform" autocomplete="off">
+  <table class="calc">
+    <tbody>
+    <tr>
+      <td colspan="2">Select gauge #:</td>
+    </tr>
+    <tr>
+      <td>
+        <select name="awgsel" onchange="OnSelChange()" autofocus="">
+          <option>AWG</option>
+          <option>0000</option>
+          <option>000</option>
+          <option>00</option>
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+          <option>13</option>
+          <option>14</option>
+          <option>15</option>
+          <option>16</option>
+          <option>17</option>
+          <option>18</option>
+          <option>19</option>
+          <option>20</option>
+          <option>21</option>
+          <option>22</option>
+          <option>23</option>
+          <option>24</option>
+          <option>25</option>
+          <option>26</option>
+          <option>27</option>
+          <option>28</option>
+          <option>29</option>
+          <option>30</option>
+          <option>31</option>
+          <option>32</option>
+          <option>33</option>
+          <option>34</option>
+          <option>35</option>
+          <option>36</option>
+          <option>37</option>
+          <option>38</option>
+          <option>39</option>
+          <option>40</option>
+        </select>
+      </td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2">Enter gauge #:</td>
+    </tr>
+    <tr>
+      <td class="math"><input type="number" step="1" name="x" class="intext"></td>
+      <td class="mathsymbol">AWG</td>
+      <td>
+        <button type="button" title="Calculate" class="btn" onclick="OnCalc1()">Calculate
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">Diameter in millimeters:</td>
+    </tr>
+    <tr>
+      <td class="math"><input type="text" name="d" class="intext">
+      </td>
+      <td class="mathsymbol">mm
+      </td>
+      <td>
+        <button type="button" title="Calculate" class="btn" onclick="OnCalc2()">Calculate
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        Cross sectional area in square millimeters:
+      </td>
+    </tr>
+    <tr>
+      <td class="math"><input type="text" name="a" class="intext"></td>
+      <td class="mathsymbol">mm<sup>2</sup>
+      </td>
+      <td>
+        <button type="button" title="Calculate" class="btn" onclick="OnCalc3()">Calculate
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button type="reset" id="reset" title="Reset" class="btn">Reset</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</form>
+<div>
+  1 year = 31556952000 milisecundes<br/>
+  1 year = 31556952 secundes<br/>
+  1 year = 525949 minutes<br/>
+  1 year = 8765 hours<br/>
+  1 year = 365 days<br/>
+  1 year = 52 weeks<br/>
+</div>
+<table class="ve-ce-branchNode ve-ce-tableNode ve-ce-mwTableNode wikitable jquery-tablesorter ve-ce-tableNode-active"
+       id="mwOA" contenteditable="false">
+  <tbody id="mwOQ" class="ve-ce-branchNode">
+  <tr id="mwOg" class="ve-ce-branchNode">
+    <th id="mwOw"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-header ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      Iš / Į</p></th>
+    <th id="mwPA"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-header ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      <img class="ve-ce-nail ve-ce-nail-pre-open"><a rel="mw:WikiLink"
+                                                     href="https://lt.wikipedia.org/wiki/D%C5%BEaulis"
+                                                     title="Džaulis"
+                                                     id="mwPQ"
+                                                     class="ve-ce-annotation ve-ce-nailedAnnotation ve-ce-linkAnnotation ve-ce-mwInternalLinkAnnotation"><img
+            class="ve-ce-nail ve-ce-nail-post-open">Džaulis<img
+            class="ve-ce-nail ve-ce-nail-pre-close"></a><img
+            class="ve-ce-nail ve-ce-nail-post-close"></p></th>
+    <th id="mwPg"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-header ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      <img class="ve-ce-nail ve-ce-nail-pre-open"><a rel="mw:WikiLink"
+                                                     href="https://lt.wikipedia.org/wiki/Vatvaland%C4%97"
+                                                     title="Vatvalandė"
+                                                     class="mw-redirect ve-ce-annotation ve-ce-nailedAnnotation ve-ce-linkAnnotation ve-ce-mwInternalLinkAnnotation"
+                                                     id="mwPw"><img
+            class="ve-ce-nail ve-ce-nail-post-open">Vatvalandė<img
+            class="ve-ce-nail ve-ce-nail-pre-close"></a><img
+            class="ve-ce-nail ve-ce-nail-post-close"></p></th>
+    <th id="mwQA"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-header ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      <img class="ve-ce-nail ve-ce-nail-pre-open"><a rel="mw:WikiLink"
+                                                     href="https://lt.wikipedia.org/wiki/Elektronvoltas"
+                                                     title="Elektronvoltas"
+                                                     id="mwQQ"
+                                                     class="ve-ce-annotation ve-ce-nailedAnnotation ve-ce-linkAnnotation ve-ce-mwInternalLinkAnnotation"><img
+            class="ve-ce-nail ve-ce-nail-post-open">Elektronvoltas<img
+            class="ve-ce-nail ve-ce-nail-pre-close"></a><img
+            class="ve-ce-nail ve-ce-nail-post-close"></p></th>
+    <th id="mwQg"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-header ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      Kalorija</p></th>
+  </tr>
+  <tr id="mwQw" class="ve-ce-branchNode">
+    <th id="mwRA"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-header ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      1 J = 1&nbsp;kg m² s<sup id="mwRQ"
+                               class="ve-ce-annotation ve-ce-textStyleAnnotation ve-ce-superscriptAnnotation">-2</sup>
+      =</p></th>
+    <td id="mwRg"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      1</p></td>
+    <td id="mwRw"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      2,778 × 10<sup id="mwSA"
+                     class="ve-ce-annotation ve-ce-textStyleAnnotation ve-ce-superscriptAnnotation">−4</sup>
+    </p></td>
+    <td id="mwSQ"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      6,241 × 10<sup id="mwSg"
+                     class="ve-ce-annotation ve-ce-textStyleAnnotation ve-ce-superscriptAnnotation">18</sup>
+    </p></td>
+    <td id="mwSw"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      0,239</p></td>
+  </tr>
+  <tr id="mwTA" class="ve-ce-branchNode">
+    <th id="mwTQ"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-header ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      1 W•h =</p></th>
+    <td id="mwTg"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      3600</p></td>
+    <td id="mwTw"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      1</p></td>
+    <td id="mwUA"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      2,247 × 10<sup id="mwUQ"
+                     class="ve-ce-annotation ve-ce-textStyleAnnotation ve-ce-superscriptAnnotation">22</sup>
+    </p></td>
+    <td id="mwUg"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      859,8</p></td>
+  </tr>
+  <tr id="mwUw" class="ve-ce-branchNode">
+    <th id="mwVA"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-header ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      1 eV =</p></th>
+    <td id="mwVQ"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      1,602 × 10<sup id="mwVg"
+                     class="ve-ce-annotation ve-ce-textStyleAnnotation ve-ce-superscriptAnnotation">−19</sup>
+    </p></td>
+    <td id="mwVw"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      4,45 × 10<sup id="mwWA"
+                    class="ve-ce-annotation ve-ce-textStyleAnnotation ve-ce-superscriptAnnotation">−23</sup>
+    </p></td>
+    <td id="mwWQ"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      1</p></td>
+    <td id="mwWg"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      3,827 × 10<sup id="mwWw"
+                     class="ve-ce-annotation ve-ce-textStyleAnnotation ve-ce-superscriptAnnotation">−20</sup>
+    </p></td>
+  </tr>
+  <tr id="mwXA" class="ve-ce-branchNode">
+    <th id="mwXQ"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-header ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      1 cal =</p></th>
+    <td id="mwXg"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      4,1868</p></td>
+    <td id="mwXw"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      1,163 × 10<sup id="mwYA"
+                     class="ve-ce-annotation ve-ce-textStyleAnnotation ve-ce-superscriptAnnotation">−3</sup>
+    </p></td>
+    <td id="mwYQ"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      2,613 × 10<sup id="mwYg"
+                     class="ve-ce-annotation ve-ce-textStyleAnnotation ve-ce-superscriptAnnotation">19</sup>
+    </p></td>
+    <td id="mwYw"
+        class="ve-ce-branchNode ve-ce-tableCellNode ve-ce-tableCellNode-data ve-ce-tableCellableNode"
+        title="Dukart spustelėkite norėdami redaguoti langelį"
+        contenteditable="false" spellcheck="true"><p
+            class="ve-ce-branchNode ve-ce-contentBranchNode ve-ce-paragraphNode ve-ce-generated-wrapper">
+      1</p></td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 540px; height: 1991px;" border="1">
+  <tbody>
+  <tr>
+    <td style="background-color: #fae314; text-align: center;" rowspan="2">
+      <strong><span style="font-size: 10pt;">Medžiaga <br></span></strong>
+    </td>
+    <td style="background-color: #fae314; text-align: center;"><strong><span
+            style="font-size: 10pt;">Temperatūra <em><sup>(°</sup> C)</em></span></strong>
+    </td>
+  </tr>
+  <tr>
+    <td style="background-color: #fae314; text-align: center;"><strong><span
+            style="font-size: 10pt;">25</span></strong></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Acetonas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,16</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Akrilas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,2</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="background-color: #ffff00; font-size: 10pt;"><span
+            data-mce-bogus="1"
+            style="background-color: #c0c0c0;">Oras</span><br></span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,024</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Alkoholis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,17</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Aliuminis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">250</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Aliuminio oksidas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">30</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Amoniakas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,022</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Stibis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">18,5</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Argonas (dujos)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,016</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Asbesto, supakuota nesuveržtai</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,15</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Asbestas(plokštė)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,14</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Asfaltas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,75</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Bitumas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,17</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Benzolas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,16</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Berilis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">218</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Žalvaris</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">109</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Kadmis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">92</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Anglis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">1,7</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Anglies dioksidas (dujos)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,0146</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Cementas (Portlando)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,29</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Cementas (skiedinys)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">1,73</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Kreida</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0. 09</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Chromo, nikelio plienas (18% Cr, 8% Ni)</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">16,3</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Molis, sausas- drėgnas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,15-1,8</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Kobaltas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">69</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Betonas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,42</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="background-color: #c0c0c0; font-size: 10pt;">Varis</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">401</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Kamštis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,07</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Medvilnė</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,03</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Anglinio plieno</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">54</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Vata (izoliacinė)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,029</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Žemė (sausa)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">1,5</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Eteris</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,14</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Epoksidinė derva</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,35</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Veltinis (izoliacija)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,04</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Stiklo pluoštas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,04</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Pluošto (medienos plaušų plokštės)</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,2</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Ugniai atsparios molio plytos 500 <sup>°</sup> C</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">1,4</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Freonas 12 (dujos)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,073</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Benzinas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,15</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Stiklas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">1,05</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Stiklo vata</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,04</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Glicerinas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,28</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Auksas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">310</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Granitas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">1,7-4,0</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Gipso kartono</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,17</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Medienos plaušų plokštės (didelio tankio)</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,15</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Lapuočių (ąžuolas, klevas ..)</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,16</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Helis (dujos)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,142</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Vandenilis (dujos)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,168</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Izoliacinės medžiagos</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,035-0,16</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Geležies</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">80</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Ketaus</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">55</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Žibalas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,15</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Švino Pb</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">35</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Oda (sausa)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,14</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Kalkakmenis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">1,26-1,33</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Magnis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">156</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Marmuras</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">2,08-2,94</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Metanas (dujos)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,030</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Metanolis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,21</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Žėrutis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,71</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Mineralinės izoliacinės medžiagos, vilnos antklodės ..</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,04</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Molibdenas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">138</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Nikelis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">91</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Azotas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,024</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Alyva (SAE 50)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,15</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Alyvų aliejus</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,17</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Deguonis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,024</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Popierius</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,05</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Parafinas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,25</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Perlitas (atmosferos slėgis)</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,031</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Gipso, gipso</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,48</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Platina</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">70</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Fanera</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,13</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Polietilenas HD</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,42-0,51</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Polipropilenas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,1-0,22</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Poliuretano putos</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,02</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Porcelianas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">1,5</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">PVC</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,19</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Akmuo</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">2-7</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Akmens vatos izoliacija</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,045</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Smėlis, sausas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,15-0,25</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Smėlis, drėgnas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,25-2</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Smiltainis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">1,7</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Pjuvenos</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,08</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Silicio dioksidas Aerogel</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,02</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Silikoninė alyva</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,1</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="background-color: #c0c0c0; font-size: 10pt;">Sidabras</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">429</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Sniegas (temp &lt;0 <sup>°</sup> C)</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,05-0,25</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Natris</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">84</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Spygliuočių mediena (eglė, pušis ..)</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,12</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Dirvožemis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,15-2</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Plieno (anglies 1%)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">43</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Nerūdijantis plienas</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">16</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Šiaudų izoliacija</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,09</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Putų polistirolo</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,033</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Alavo Sn</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">67</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Cinkas Zn</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">116</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="background-color: #c0c0c0; font-size: 10pt;">Vanduo</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,58</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Mediena skersai plaušų (pušis)</span>
+    </td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,12</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Mediena (ąžuolo)</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,17</span></td>
+  </tr>
+  <tr>
+    <td style="background-color: #cccccc; text-align: center;"><span
+            style="font-size: 10pt;">Vilna, veltinis</span></td>
+    <td style="background-color: #dcdcdc; text-align: center;"><span
+            style="font-size: 10pt;">0,07</span></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
