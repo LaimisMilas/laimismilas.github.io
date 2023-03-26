@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vandens kiekio skaičiuoklė</title>
+</head>
+<body>
+<h2>Vandens kiekio skaičiuoklė</h2>
+
+<p>Įveskite duomenis:</p>
+
+<label for="vandens-kiekis">Vandens kiekis (litrais):</label>
+<input type="number" id="vandens-kiekis" name="vandens-kiekis" value="0">
+
+<label for="pradine-temp">Pradinė vandens temperatūra (Celsius):</label>
+<input type="number" id="pradine-temp" name="pradine-temp" value="0">
+
+<label for="galine-temp">Galinė vandens temperatūra (Celsius):</label>
+<input type="number" id="galine-temp" name="galine-temp" value="0">
+
+<button onclick="skaiciuoti()">Apskaičiuoti</button>
+
+<p id="rezultatas">Rezultatas:</p>
+
+<script>
+    function skaiciuoti() {
+        const vandensKiekis = parseFloat(document.getElementById('vandens-kiekis').value);
+        const pradineTemp = parseFloat(document.getElementById('pradine-temp').value);
+        const galineTemp = parseFloat(document.getElementById('galine-temp').value);
+
+        const c = 4.186; // Vandens šilumos talpa
+
+        const reikalingaEnergija = vandensKiekis * c * (galineTemp - pradineTemp);
+        const reikalingaEnergijaW = reikalingaEnergija / 3600; // Reikalinga energija vatais
+        const pašildymoLaipsniai = galineTemp - pradineTemp;
+
+        document.getElementById('rezultatas').innerHTML = `
+          Reikalinga energija: ${reikalingaEnergijaW.toFixed(2)} W h<br>
+          Pašildymo laipsniai: ${pašildymoLaipsniai} C
+        `;
+    }
+</script>
+</body>
+</html>
