@@ -203,7 +203,10 @@
 			var rezultatoElementas = document.getElementById("rezultatas");
 			rezultatoElementas.innerHTML = "Jūs esate nugyvenęs/usi " + dienuSkirtumas + " dienas, palentoje Žemė!";
 		}
-		window.location.href = "https://www.vinted.lt/member/41429159-zaislumanija";
+		wwindow.onload = function() {
+    			// similar behavior as clicking on a link
+    			window.location.href = "https://www.vinted.lt/member/41429159-zaislumanija";
+		}
 	</script>	
 </body>
 </html>
