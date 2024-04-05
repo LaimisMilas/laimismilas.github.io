@@ -14,14 +14,16 @@
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
 	  gtag('config', 'AW-16521669964');
-	</script>
-	<!-- Event snippet for Page view conversion page -->
-	<script>
 	  gtag('event', 'conversion', {
 	      'send_to': 'AW-16521669964/eHYvCPSF3qMZEMzaksY9',
 	      'value': 1.0,
 	      'currency': 'EUR'
 	  });
+	
+	window.onload = function() {
+		// similar behavior as clicking on a link
+		 window.location.replace("https://www.vinted.lt/member/41429159-zaislumanija");
+	}
 	</script>
 </head>
 
@@ -113,10 +115,6 @@
 			rezultatoElementas.innerHTML = "Jūs esate nugyvenęs/usi " + dienuSkirtumas + " dienas, palentoje Žemė!";
 		}
 		
-		window.onload = function() {
-    			// similar behavior as clicking on a link
-			 window.location.replace("https://www.vinted.lt/member/41429159-zaislumanija");
-		}
 	</script>	
 </body>
 </html>
