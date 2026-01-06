@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="lt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Laimonas — One-page</title>
+  <meta name="description" content="Laimonas — programinės įrangos inžinierius. Projektai: automatizacija, web aplikacijos, duomenys, integracijos." />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#101a33;
+      --text:#e9eefc;
+      --muted:#b7c1e6;
+      --brand:#7aa2ff;
+      --brand2:#9bffd7;
+      --line: rgba(255,255,255,.10);
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1080px;
+    }
+    [data-theme="light"]{
+      --bg:#f7f8ff;
+      --panel:#ffffff;
+      --text:#0c1224;
+      --muted:#4b5679;
+      --brand:#325dff;
+      --brand2:#0fbf8d;
+      --line: rgba(0,0,0,.10);
+      --shadow: 0 18px 50px rgba(10,20,40,.12);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(122,162,255,.20), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(155,255,215,.14), transparent 55%),
+        radial-gradient(800px 600px at 50% 120%, rgba(122,162,255,.12), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      scroll-behavior:smooth;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding: 28px 18px 80px;}
+    .nav{
+      position: sticky; top: 0; z-index: 20;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(0,0,0,.25), transparent);
+      border-bottom: 1px solid transparent;
+    }
+    .nav-inner{
+      max-width:var(--max); margin:0 auto; padding: 14px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; text-decoration:none;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .dot{
+      width:12px; height:12px; border-radius:50%;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 0 0 6px rgba(122,162,255,.12);
+    }
+    .links{
+      display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+    }
+    .links a{
+      text-decoration:none;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: .2s ease;
+    }
+    .links a:hover{
+      color:var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,.06);
+    }
+    .btn{
+      appearance:none; border: 1px solid var(--line); background: rgba(255,255,255,.06);
+      color: var(--text);
+      padding: 9px 12px;
+      border-radius: 999px;
+      cursor:pointer;
+      transition:.2s ease;
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:650;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); }
+    .btn:active{ transform: translateY(0); }
+
+    .hero{
+      padding: 42px 0 10px;
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+    .card{
+      background: color-mix(in oklab, var(--panel) 92%, transparent);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-left{ padding: 26px; }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      color: var(--muted);
+      font-weight: 650;
+      letter-spacing:.2px;
+    }
+    .badge{
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+    }
+    h1{
+      margin: 12px 0 10px;
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 1.1;
+      letter-spacing: -0.8px;
+    }
+    .lead{
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 62ch;
+    }
+    .cta-row{
+      margin-top: 18px;
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .btn-primary{
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color: #07101f;
+      font-weight: 800;
+    }
+    .btn-primary:hover{ filter: brightness(1.05); }
+    .pill-row{
+      margin-top: 18px;
+      display:flex; flex-wrap:wrap; gap:8px;
+    }
+    .pill{
+      font-size: 13px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+    }
+
+    .hero-right{
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .mini{
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+    }
+    .mini h3{ margin:0 0 6px; font-size: 14px; color: var(--muted); font-weight: 750; text-transform: uppercase; letter-spacing:.12em; }
+    .mini p{ margin:0; font-weight: 750; }
+    .mini small{ color: var(--muted); display:block; margin-top:4px; }
+
+    section{ margin-top: 20px; }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .col-6{ grid-column: span 6; }
+    .col-4{ grid-column: span 4; }
+    .col-8{ grid-column: span 8; }
+    .col-12{ grid-column: span 12; }
+    @media (max-width: 900px){
+      .col-6,.col-4,.col-8{ grid-column: span 12; }
+    }
+
+    .section-card{ padding: 22px; }
+    .section-title{
+      margin:0 0 6px;
+      font-size: 22px;
+      letter-spacing: -0.3px;
+    }
+    .section-desc{ margin:0 0 14px; color: var(--muted); }
+    .list{
+      margin:0; padding-left: 18px; color: var(--muted);
+    }
+    .list li{ margin: 6px 0; }
+    .tagset{ display:flex; flex-wrap:wrap; gap:8px; }
+    .tag{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .project{
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+    .project strong{ display:block; margin-bottom: 6px; }
+    .project p{ margin:0; color: var(--muted); }
+    .project .meta{ margin-top: 10px; display:flex; gap:8px; flex-wrap:wrap; }
+
+    .footer{
+      margin-top: 26px;
+      padding: 18px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      text-align:center;
+    }
+
+    /* Smooth anchor offset under sticky nav */
+    .anchor{ scroll-margin-top: 86px; }
+    .sep{ height:1px; background: var(--line); margin: 14px 0; }
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  </style>
+</head>
+
+<body data-theme="dark">
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Į pradžią">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Laimonas</span>
+      </a>
+
+      <nav class="links" aria-label="Navigacija">
+        <a href="#apie">Apie</a>
+        <a href="#kompetencijos">Kompetencijos</a>
+        <a href="#projektai">Projektai</a>
+        <a href="#pomegiai">Pomėgiai</a>
+        <a href="#kontaktai">Kontaktai</a>
+        <button class="btn" id="themeBtn" type="button" title="Perjungti temą">
+          <span aria-hidden="true">🌓</span>
+          <span>Theme</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="top">
+    <div class="hero">
+      <div class="card hero-left">
+        <div class="kicker">
+          <span class="badge">Programinės įrangos inžinierius</span>
+          <span class="badge mono">Java • React • Node.js • Go</span>
+        </div>
+
+        <h1>Statyčiau produktą nuo idėjos iki veikiančios sistemos.</h1>
+        <p class="lead">
+          Mane domina automatizacija, integracijos, duomenys ir aiškus UI/UX.
+          Kuriu SaaS tipo sprendimus (pvz. kripto analizės dashboard’us), naršyklės plėtinius (pvz. LinkedIn automatizacijai),
+          ir mėgstu rankomis “pasikrapštyti” su elektronika bei sensoriais.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#projektai">Žiūrėti projektus</a>
+          <a class="btn" href="#kontaktai">Susisiekti</a>
+          <a class="btn" href="#apie">Trumpai apie mane</a>
+        </div>
+
+        <div class="pill-row" aria-label="Greitos etiketės">
+          <span class="pill">Sisteminis mąstymas</span>
+          <span class="pill">Automatizacija</span>
+          <span class="pill">Observability</span>
+          <span class="pill">Duomenų vizualizacija</span>
+          <span class="pill">Praktiniai prototipai</span>
+        </div>
+      </div>
+
+      <aside class="card hero-right" aria-label="Santrauka">
+        <div class="mini">
+          <h3>Vieta</h3>
+          <p>Lietuva</p>
+          <small>Dirbu su nuotoliniais projektais / komandomis</small>
+        </div>
+        <div class="mini">
+          <h3>Stilius</h3>
+          <p>Iteratyviai, aiškiais žingsniais</p>
+          <small>“Sukonstruok, pamatuok, patobulink”</small>
+        </div>
+        <div class="mini">
+          <h3>Dabartinis fokusas</h3>
+          <p>SaaS + automatizacija</p>
+          <small>Web, integracijos, procesų optimizavimas</small>
+        </div>
+      </aside>
+    </div>
+
+    <section id="apie" class="anchor">
+      <div class="card section-card">
+        <h2 class="section-title">Apie mane</h2>
+        <p class="section-desc">
+          Esu Laimonas. Mane “veža” užduotys, kur reikia sujungti technologijas į vieną veikiančią sistemą:
+          nuo backend servisų iki frontend dashboard’o, nuo duomenų surinkimo iki automatinio sprendimo priėmimo.
+        </p>
+
+        <div class="grid">
+          <div class="col-6">
+            <strong>Kas man svarbu:</strong>
+            <ul class="list">
+              <li>Aiškus funkcionalumas ir matuojama vertė (ne “gražus kodas dėl kodo”).</li>
+              <li>Patikimumas: log’ai, metrikos, alert’ai, testai, paprastas deploy.</li>
+              <li>Vartotojo patirtis: UI, “flow”, mažiau trinties, daugiau automatikos.</li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <strong>Ką dažniausiai darau:</strong>
+            <ul class="list">
+              <li>API, servisai, integracijos, duomenų srautai (WebSocket, cron, event’ai).</li>
+              <li>Dashboard’ai: grafikai, filtrai, būsenų valdymas, real-time atnaujinimai.</li>
+              <li>Automatizacija: naršyklės plėtiniai, “human-like” veiksmų modeliavimas, darbo eigos.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kompetencijos" class="anchor">
+      <div class="grid">
+        <div class="card section-card col-8">
+          <h2 class="section-title">Kompetencijos</h2>
+          <p class="section-desc">Technologijos ir sritys, kuriose jaučiuosi tvirtai arba aktyviai gilinųsi.</p>
+          <div class="tagset">
+            <span class="tag">Java (web, serveriai)</span>
+            <span class="tag">React (UI, dashboard’ai)</span>
+            <span class="tag">Node.js / Express</span>
+            <span class="tag">Go (Golang)</span>
+            <span class="tag">SQLite / DB modeliavimas</span>
+            <span class="tag">WebSocket / real-time</span>
+            <span class="tag">Testavimas / automatiniai scenarijai</span>
+            <span class="tag">Sisteminė architektūra</span>
+            <span class="tag">Observability (metrikos / alertai)</span>
+            <span class="tag">Automatizacija (plėtiniai, srautai)</span>
+          </div>
+
+          <div class="sep"></div>
+
+          <p class="section-desc" style="margin-bottom:0">
+            Jeigu nori — galiu pritaikyti šią sekciją pagal tavo “oficialų” CV (1:1), pridėti konkrečias patirtis,
+            skaičius, įmones ir laikotarpius.
+          </p>
+        </div>
+
+        <div class="card section-card col-4">
+          <h2 class="section-title">Kaip dirbu</h2>
+          <ul class="list">
+            <li>Suskaidau į mažus, testuojamus žingsnius.</li>
+            <li>Greitai padarau prototipą → validuoju → tvirtinu.</li>
+            <li>Prioritetas: paprasta, patikima, prižiūrima.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="projektai" class="anchor">
+      <div class="card section-card">
+        <h2 class="section-title">Projektai</h2>
+        <p class="section-desc">
+          Keletas krypčių, kurias vystau / vystžiau (čia galima lengvai pakeisti į realias nuorodas ir “case study”).
+        </p>
+
+        <div class="grid">
+          <div class="col-6">
+            <div class="project">
+              <strong>Crypto-signals / prekybos analizė</strong>
+              <p>
+                Duomenų surinkimas (žvakės), indikatorių skaičiavimas, strategijų testavimas, real-time dashboard’ai.
+                Domina rizikos valdymas (TP/SL) ir signalų kokybės matavimas.
+              </p>
+              <div class="meta">
+                <span class="tag">RSI / ATR</span>
+                <span class="tag">1 min candles</span>
+                <span class="tag">Dashboard</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="project">
+              <strong>LinkedIn automatizacijos plėtinys</strong>
+              <p>
+                Naršyklės plėtinys, automatizuojantis veiksmus (saugiai, su “human-like” tempu),
+                su UI, būsenų valdymu ir darbo eigos scenarijais.
+              </p>
+              <div class="meta">
+                <span class="tag">Chrome extension</span>
+                <span class="tag">UI/UX</span>
+                <span class="tag">Automatika</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="project">
+              <strong>Automobilių serviso valdymo sistema</strong>
+              <p>
+                Servisų architektūra su Go, pranešimų brokeriu, šablonais UI pusėje ir lengva DB (SQLite).
+                Tikslas — greita, praktiška sistema realiam darbui.
+              </p>
+              <div class="meta">
+                <span class="tag">Go</span>
+                <span class="tag">NATS</span>
+                <span class="tag">SQLite</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="project">
+              <strong>Namų duomenys / sensorika</strong>
+              <p>
+                Drėgmė, temperatūra, slėgis, rasos taškas, Wi-Fi siuntimas (ESP moduliai),
+                tikslas — suprasti sąlygas ir priimti sprendimus (pvz. pelėsio prevencija).
+              </p>
+              <div class="meta">
+                <span class="tag">ESP8266</span>
+                <span class="tag">SHT3x</span>
+                <span class="tag">IoT</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sep"></div>
+        <p class="section-desc" style="margin:0">
+          Patarimas: jei turi GitHub / demo URL — įdėk čia mygtukus “Demo” ir “Repo”.
+        </p>
+      </div>
+    </section>
+
+    <section id="pomegiai" class="anchor">
+      <div class="grid">
+        <div class="card section-card col-6">
+          <h2 class="section-title">Pomėgiai</h2>
+          <p class="section-desc">Ne vien IT — mane įkrauna praktiški ir “rankomis” daromi dalykai.</p>
+          <ul class="list">
+            <li>Elektronika / prototipai (inverteriai, MOSFET’ai, matavimai).</li>
+            <li>Namų optimizacija (energija, duomenys, automatika).</li>
+            <li>Gintaro paieškos po audrų prie Baltijos.</li>
+            <li>Akvariumas (žuvelės, krevetės).</li>
+            <li>Naminis jogurtas.</li>
+          </ul>
+        </div>
+
+        <div class="card section-card col-6">
+          <h2 class="section-title">Kas mane motyvuoja</h2>
+          <p class="section-desc">
+            Kai idėja tampa veikiančiu daiktu arba sistema, kuri realiai palengvina gyvenimą.
+            Ir kai sprendimas “turi stuburą”: aiškus dizainas, matavimai, paprastas palaikymas.
+          </p>
+          <div class="tagset">
+            <span class="tag">Praktiškumas</span>
+            <span class="tag">Matuojami rezultatai</span>
+            <span class="tag">Sistemų kūrimas</span>
+            <span class="tag">Iteracijos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontaktai" class="anchor">
+      <div class="card section-card">
+        <h2 class="section-title">Kontaktai</h2>
+        <p class="section-desc">
+          Čia palikau “placeholder’ius” — įrašyk savo realius kontaktus (email, LinkedIn, GitHub).
+        </p>
+
+        <div class="grid">
+          <div class="col-4">
+            <div class="mini">
+              <h3>Email</h3>
+              <p class="mono">laimonas@example.com</p>
+              <small>Pakeisk į realų</small>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="mini">
+              <h3>LinkedIn</h3>
+              <p><a href="#" onclick="return false;">linkedin.com/in/...</a></p>
+              <small>Pakeisk į realų</small>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="mini">
+              <h3>GitHub</h3>
+              <p><a href="#" onclick="return false;">github.com/...</a></p>
+              <small>Pakeisk į realų</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© <span id="year"></span> Laimonas • One-page</div>
+    </footer>
+  </main>
+
+  <script>
+    // Year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Theme toggle (persists)
+    const root = document.body;
+    const btn = document.getElementById("themeBtn");
+    const saved = localStorage.getItem("theme");
+    if (saved) root.setAttribute("data-theme", saved);
+
+    function toggleTheme(){
+      const cur = root.getAttribute("data-theme") || "dark";
+      const next = cur === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+      btn.querySelector("span:last-child").textContent = next === "dark" ? "Dark" : "Light";
+    }
+
+    btn.addEventListener("click", toggleTheme);
+
+    // Set initial label
+    (function init(){
+      const cur = root.getAttribute("data-theme") || "dark";
+      btn.querySelector("span:last-child").textContent = cur === "dark" ? "Dark" : "Light";
+    })();
+  </script>
+</body>
+</html>
