@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Laimonas M.</title>
-  <meta name="description" content="Laimonas — programinės įrangos inžinierius. Projektai: automatizacija, web aplikacijos, duomenys, integracijos." />
+  <title>Laimonas — One-page</title>
+  <meta name="description" content="Laimonas — software engineer. Projects: automation, web apps, data, integrations." />
   <style>
     :root{
       --bg:#0b1020;
@@ -64,7 +64,7 @@
       box-shadow: 0 0 0 6px rgba(122,162,255,.12);
     }
     .links{
-      display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap;
     }
     .links a{
       text-decoration:none;
@@ -88,6 +88,7 @@
       transition:.2s ease;
       display:inline-flex; align-items:center; gap:8px;
       font-weight:650;
+      white-space: nowrap;
     }
     .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); }
     .btn:active{ transform: translateY(0); }
@@ -114,6 +115,7 @@
       color: var(--muted);
       font-weight: 650;
       letter-spacing:.2px;
+      flex-wrap: wrap;
     }
     .badge{
       font-size: 13px;
@@ -228,29 +230,66 @@
     }
 
     /* Smooth anchor offset under sticky nav */
-    .anchor{ scroll-margin-top: 86px; }
+    .anchor{ scroll-margin-top: 92px; }
     .sep{ height:1px; background: var(--line); margin: 14px 0; }
     .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+    /* Language handling */
+    .lang-only{ display:none; }
+    [data-lang="lt"] .lang-lt{ display:initial; }
+    [data-lang="lt"] .lang-en{ display:none; }
+    [data-lang="en"] .lang-en{ display:initial; }
+    [data-lang="en"] .lang-lt{ display:none; }
+
+    .langswitch{
+      display:inline-flex; align-items:center; gap:6px;
+      padding: 6px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.05);
+    }
+    .langswitch button{
+      border:0;
+      background: transparent;
+      color: var(--muted);
+      cursor:pointer;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 750;
+      transition: .2s ease;
+    }
+    .langswitch button:hover{ color: var(--text); background: rgba(255,255,255,.08); }
+    .langswitch button[aria-pressed="true"]{
+      color: #07101f;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+    }
   </style>
 </head>
 
-<body data-theme="dark">
+<body data-theme="dark" data-lang="lt">
   <header class="nav">
     <div class="nav-inner">
-      <a class="brand" href="#top" aria-label="Į pradžią">
+      <a class="brand" href="#top" aria-label="Į pradžią / Back to top">
         <span class="dot" aria-hidden="true"></span>
-        <span>Laimonas M.</span>
+        <span>Laimonas</span>
       </a>
 
-      <nav class="links" aria-label="Navigacija">
-        <a href="#apie">Apie</a>
-        <a href="#kompetencijos">Kompetencijos</a>
-        <a href="#projektai">Projektai</a>
-        <a href="#pomegiai">Pomėgiai</a>
-        <a href="#kontaktai">Kontaktai</a>
-        <button class="btn" id="themeBtn" type="button" title="Perjungti temą">
+      <nav class="links" aria-label="Navigacija / Navigation">
+        <a href="#apie"><span class="lang-lt">Apie</span><span class="lang-en">About</span></a>
+        <a href="#kompetencijos"><span class="lang-lt">Kompetencijos</span><span class="lang-en">Skills</span></a>
+        <a href="#projektai"><span class="lang-lt">Projektai</span><span class="lang-en">Projects</span></a>
+        <a href="#pomegiai"><span class="lang-lt">Pomėgiai</span><span class="lang-en">Beyond work</span></a>
+        <a href="#kontaktai"><span class="lang-lt">Kontaktai</span><span class="lang-en">Contact</span></a>
+
+        <div class="langswitch" role="group" aria-label="Language switch">
+          <button id="ltBtn" type="button" aria-pressed="true">LT</button>
+          <button id="enBtn" type="button" aria-pressed="false">EN</button>
+        </div>
+
+        <button class="btn" id="themeBtn" type="button" title="Perjungti temą / Toggle theme">
           <span aria-hidden="true">🌓</span>
-          <span>Theme</span>
+          <span class="lang-lt">Tema</span>
+          <span class="lang-en">Theme</span>
         </button>
       </nav>
     </div>
@@ -260,74 +299,100 @@
     <div class="hero">
       <div class="card hero-left">
         <div class="kicker">
-          <span class="badge">Programinės įrangos inžinierius</span>
+          <span class="badge">
+            <span class="lang-lt">Programinės įrangos inžinierius</span>
+            <span class="lang-en">Software Engineer</span>
+          </span>
           <span class="badge mono">Java • React • Node.js • Go</span>
         </div>
 
-        <h1>Sukurčiau produktą nuo idėjos iki veikiančios sistemos.</h1>
+        <h1>
+          <span class="lang-lt">Statyčiau produktą nuo idėjos iki veikiančios sistemos.</span>
+          <span class="lang-en">I build products from idea to a working system.</span>
+        </h1>
+
         <p class="lead">
-          Mane domina automatizacija, integracijos, duomenys ir aiškus UI/UX.
-          Kuriu SaaS tipo sprendimus (pvz. kripto analizės dashboard’us), naršyklės plėtinius (pvz. LinkedIn automatizacijai),
-          ir mėgstu rankomis “pasikrapštyti” su elektronika bei sensoriais.
+          <span class="lang-lt">
+            Mane domina automatizacija, integracijos, duomenys ir aiškus UI/UX.
+            Kuriu SaaS tipo sprendimus (pvz. kripto analizės dashboard’us), naršyklės plėtinius (pvz. LinkedIn automatizacijai),
+            ir mėgstu rankomis “pasikrapštyti” su elektronika bei sensoriais.
+          </span>
+          <span class="lang-en">
+            I’m into automation, integrations, data, and clean UI/UX.
+            I build SaaS-style solutions (e.g., crypto analytics dashboards), browser extensions (e.g., LinkedIn automation),
+            and I enjoy hands-on tinkering with electronics and sensors.
+          </span>
         </p>
 
         <div class="cta-row">
-          <a class="btn btn-primary" href="#projektai">Žiūrėti projektus</a>
-          <a class="btn" href="#kontaktai">Susisiekti</a>
-          <a class="btn" href="#apie">Trumpai apie mane</a>
+          <a class="btn btn-primary" href="#projektai">
+            <span class="lang-lt">Žiūrėti projektus</span><span class="lang-en">See projects</span>
+          </a>
+          <a class="btn" href="#kontaktai">
+            <span class="lang-lt">Susisiekti</span><span class="lang-en">Get in touch</span>
+          </a>
+          <a class="btn" href="#apie">
+            <span class="lang-lt">Trumpai apie mane</span><span class="lang-en">Quick intro</span>
+          </a>
         </div>
 
-        <div class="pill-row" aria-label="Greitos etiketės">
-          <span class="pill">Sisteminis mąstymas</span>
-          <span class="pill">Automatizacija</span>
-          <span class="pill">Observability</span>
-          <span class="pill">Duomenų vizualizacija</span>
-          <span class="pill">Praktiniai prototipai</span>
+        <div class="pill-row" aria-label="Greitos etiketės / Quick tags">
+          <span class="pill"><span class="lang-lt">Sisteminis mąstymas</span><span class="lang-en">Systems thinking</span></span>
+          <span class="pill"><span class="lang-lt">Automatizacija</span><span class="lang-en">Automation</span></span>
+          <span class="pill"><span class="lang-lt">Observability</span><span class="lang-en">Observability</span></span>
+          <span class="pill"><span class="lang-lt">Duomenų vizualizacija</span><span class="lang-en">Data visualization</span></span>
+          <span class="pill"><span class="lang-lt">Praktiniai prototipai</span><span class="lang-en">Practical prototyping</span></span>
         </div>
       </div>
 
-      <aside class="card hero-right" aria-label="Santrauka">
+      <aside class="card hero-right" aria-label="Santrauka / Snapshot">
         <div class="mini">
-          <h3>Vieta</h3>
-          <p>Lietuva</p>
-          <small>Dirbu su nuotoliniais projektais / komandomis</small>
+          <h3><span class="lang-lt">Vieta</span><span class="lang-en">Location</span></h3>
+          <p><span class="lang-lt">Lietuva</span><span class="lang-en">Lithuania</span></p>
+          <small><span class="lang-lt">Dirbu su nuotoliniais projektais / komandomis</span><span class="lang-en">Open to remote teams & projects</span></small>
         </div>
         <div class="mini">
-          <h3>Stilius</h3>
-          <p>Iteratyviai, aiškiais žingsniais</p>
-          <small>“Sukonstruok, pamatuok, patobulink”</small>
+          <h3><span class="lang-lt">Stilius</span><span class="lang-en">Style</span></h3>
+          <p><span class="lang-lt">Iteratyviai, aiškiais žingsniais</span><span class="lang-en">Iterative, clear steps</span></p>
+          <small><span class="lang-lt">“Sukonstruok, pamatuok, patobulink”</span><span class="lang-en">“Build, measure, improve”</span></small>
         </div>
         <div class="mini">
-          <h3>Dabartinis fokusas</h3>
-          <p>SaaS + automatizacija</p>
-          <small>Web, integracijos, procesų optimizavimas</small>
+          <h3><span class="lang-lt">Fokusas</span><span class="lang-en">Focus</span></h3>
+          <p><span class="lang-lt">SaaS + automatizacija</span><span class="lang-en">SaaS + automation</span></p>
+          <small><span class="lang-lt">Web, integracijos, procesų optimizavimas</span><span class="lang-en">Web, integrations, workflow optimization</span></small>
         </div>
       </aside>
     </div>
 
     <section id="apie" class="anchor">
       <div class="card section-card">
-        <h2 class="section-title">Apie mane</h2>
+        <h2 class="section-title"><span class="lang-lt">Apie mane</span><span class="lang-en">About</span></h2>
         <p class="section-desc">
-          Esu Laimonas. Mane “veža” užduotys, kur reikia sujungti technologijas į vieną veikiančią sistemą:
-          nuo backend servisų iki frontend dashboard’o, nuo duomenų surinkimo iki automatinio sprendimo priėmimo.
+          <span class="lang-lt">
+            Esu Laimonas. Mane “veža” užduotys, kur reikia sujungti technologijas į vieną veikiančią sistemą:
+            nuo backend servisų iki frontend dashboard’o, nuo duomenų surinkimo iki automatinio sprendimo priėmimo.
+          </span>
+          <span class="lang-en">
+            I’m Laimonas. I enjoy problems where different technologies must click into one working system:
+            from backend services to a frontend dashboard, from data collection to automated decisions.
+          </span>
         </p>
 
         <div class="grid">
           <div class="col-6">
-            <strong>Kas man svarbu:</strong>
+            <strong><span class="lang-lt">Kas man svarbu:</span><span class="lang-en">What I care about:</span></strong>
             <ul class="list">
-              <li>Aiškus funkcionalumas ir matuojama vertė (ne “gražus kodas dėl kodo”).</li>
-              <li>Patikimumas: log’ai, metrikos, alert’ai, testai, paprastas deploy.</li>
-              <li>Vartotojo patirtis: UI, “flow”, mažiau trinties, daugiau automatikos.</li>
+              <li><span class="lang-lt">Aiškus funkcionalumas ir matuojama vertė (ne “gražus kodas dėl kodo”).</span><span class="lang-en">Clear functionality & measurable value (not “clean code for its own sake”).</span></li>
+              <li><span class="lang-lt">Patikimumas: log’ai, metrikos, alert’ai, testai, paprastas deploy.</span><span class="lang-en">Reliability: logs, metrics, alerts, tests, simple deploys.</span></li>
+              <li><span class="lang-lt">Vartotojo patirtis: UI, “flow”, mažiau trinties, daugiau automatikos.</span><span class="lang-en">User experience: UI, flow, less friction, more automation.</span></li>
             </ul>
           </div>
           <div class="col-6">
-            <strong>Ką dažniausiai darau:</strong>
+            <strong><span class="lang-lt">Ką dažniausiai darau:</span><span class="lang-en">What I usually do:</span></strong>
             <ul class="list">
-              <li>API, servisai, integracijos, duomenų srautai (WebSocket, cron, event’ai).</li>
-              <li>Dashboard’ai: grafikai, filtrai, būsenų valdymas, real-time atnaujinimai.</li>
-              <li>Automatizacija: naršyklės plėtiniai, “human-like” veiksmų modeliavimas, darbo eigos.</li>
+              <li><span class="lang-lt">API, servisai, integracijos, duomenų srautai (WebSocket, cron, event’ai).</span><span class="lang-en">APIs, services, integrations, data flows (WebSocket, cron, events).</span></li>
+              <li><span class="lang-lt">Dashboard’ai: grafikai, filtrai, būsenų valdymas, real-time atnaujinimai.</span><span class="lang-en">Dashboards: charts, filters, state management, real-time updates.</span></li>
+              <li><span class="lang-lt">Automatizacija: naršyklės plėtiniai, “human-like” veiksmų modeliavimas, darbo eigos.</span><span class="lang-en">Automation: browser extensions, human-like pacing, workflow scenarios.</span></li>
             </ul>
           </div>
         </div>
@@ -337,35 +402,45 @@
     <section id="kompetencijos" class="anchor">
       <div class="grid">
         <div class="card section-card col-8">
-          <h2 class="section-title">Kompetencijos</h2>
-          <p class="section-desc">Technologijos ir sritys, kuriose jaučiuosi tvirtai arba aktyviai gilinųsi.</p>
+          <h2 class="section-title"><span class="lang-lt">Kompetencijos</span><span class="lang-en">Skills</span></h2>
+          <p class="section-desc">
+            <span class="lang-lt">Technologijos ir sritys, kuriose jaučiuosi tvirtai arba aktyviai gilinųsi.</span>
+            <span class="lang-en">Tools and areas I’m confident in (and actively expanding).</span>
+          </p>
+
           <div class="tagset">
-            <span class="tag">Java (web, serveriai)</span>
-            <span class="tag">React (UI, dashboard’ai)</span>
+            <span class="tag"><span class="lang-lt">Java (web, serveriai)</span><span class="lang-en">Java (web, servers)</span></span>
+            <span class="tag"><span class="lang-lt">React (UI, dashboard’ai)</span><span class="lang-en">React (UI, dashboards)</span></span>
             <span class="tag">Node.js / Express</span>
             <span class="tag">Go (Golang)</span>
-            <span class="tag">SQLite / DB modeliavimas</span>
+            <span class="tag"><span class="lang-lt">SQLite / DB modeliavimas</span><span class="lang-en">SQLite / DB modeling</span></span>
             <span class="tag">WebSocket / real-time</span>
-            <span class="tag">Testavimas / automatiniai scenarijai</span>
-            <span class="tag">Sisteminė architektūra</span>
-            <span class="tag">Observability (metrikos / alertai)</span>
-            <span class="tag">Automatizacija (plėtiniai, srautai)</span>
+            <span class="tag"><span class="lang-lt">Testavimas / automatiniai scenarijai</span><span class="lang-en">Testing / automation</span></span>
+            <span class="tag"><span class="lang-lt">Sisteminė architektūra</span><span class="lang-en">System architecture</span></span>
+            <span class="tag">Observability</span>
+            <span class="tag"><span class="lang-lt">Automatizacija (plėtiniai, srautai)</span><span class="lang-en">Automation (extensions, flows)</span></span>
           </div>
 
           <div class="sep"></div>
 
           <p class="section-desc" style="margin-bottom:0">
-            Jeigu nori — galiu pritaikyti šią sekciją pagal tavo “oficialų” CV (1:1), pridėti konkrečias patirtis,
-            skaičius, įmones ir laikotarpius.
+            <span class="lang-lt">
+              Jeigu nori — galiu pritaikyti šią sekciją pagal tavo “oficialų” CV (1:1), pridėti konkrečias patirtis,
+              skaičius, įmones ir laikotarpius.
+            </span>
+            <span class="lang-en">
+              If you want, I can tailor this section to match your “official” CV (1:1) and add concrete experience,
+              metrics, companies, and timelines.
+            </span>
           </p>
         </div>
 
         <div class="card section-card col-4">
-          <h2 class="section-title">Kaip dirbu</h2>
+          <h2 class="section-title"><span class="lang-lt">Kaip dirbu</span><span class="lang-en">How I work</span></h2>
           <ul class="list">
-            <li>Suskaidau į mažus, testuojamus žingsnius.</li>
-            <li>Greitai padarau prototipą → validuoju → tvirtinu.</li>
-            <li>Prioritetas: paprasta, patikima, prižiūrima.</li>
+            <li><span class="lang-lt">Suskaidau į mažus, testuojamus žingsnius.</span><span class="lang-en">I break work into small, testable steps.</span></li>
+            <li><span class="lang-lt">Greitai padarau prototipą → validuoju → tvirtinu.</span><span class="lang-en">Prototype fast → validate → harden.</span></li>
+            <li><span class="lang-lt">Prioritetas: paprasta, patikima, prižiūrima.</span><span class="lang-en">Priority: simple, reliable, maintainable.</span></li>
           </ul>
         </div>
       </div>
@@ -373,48 +448,71 @@
 
     <section id="projektai" class="anchor">
       <div class="card section-card">
-        <h2 class="section-title">Projektai</h2>
+        <h2 class="section-title"><span class="lang-lt">Projektai</span><span class="lang-en">Projects</span></h2>
         <p class="section-desc">
-          Keletas krypčių, kurias vystau / vystžiau (čia galima lengvai pakeisti į realias nuorodas ir “case study”).
+          <span class="lang-lt">
+            Keletas krypčių, kurias vystau / vystžiau (čia galima lengvai pakeisti į realias nuorodas ir “case study”).
+          </span>
+          <span class="lang-en">
+            A few areas I’ve been building (easy to replace with real links and case studies).
+          </span>
         </p>
 
         <div class="grid">
           <div class="col-6">
             <div class="project">
-              <strong>Crypto-signals / prekybos analizė</strong>
+              <strong><span class="lang-lt">Crypto-signals / prekybos analizė</span><span class="lang-en">Crypto signals / trading analytics</span></strong>
               <p>
-                Duomenų surinkimas (žvakės), indikatorių skaičiavimas, strategijų testavimas, real-time dashboard’ai.
-                Domina rizikos valdymas (TP/SL) ir signalų kokybės matavimas.
+                <span class="lang-lt">
+                  Duomenų surinkimas (žvakės), indikatorių skaičiavimas, strategijų testavimas, real-time dashboard’ai.
+                  Domina rizikos valdymas (TP/SL) ir signalų kokybės matavimas.
+                </span>
+                <span class="lang-en">
+                  Data collection (candles), indicator calculations, strategy testing, real-time dashboards.
+                  Interested in risk management (TP/SL) and measuring signal quality.
+                </span>
               </p>
               <div class="meta">
                 <span class="tag">RSI / ATR</span>
                 <span class="tag">1 min candles</span>
-                <span class="tag">Dashboard</span>
+                <span class="tag"><span class="lang-lt">Dashboard</span><span class="lang-en">Dashboard</span></span>
               </div>
             </div>
           </div>
 
           <div class="col-6">
             <div class="project">
-              <strong>LinkedIn automatizacijos plėtinys</strong>
+              <strong><span class="lang-lt">LinkedIn automatizacijos plėtinys</span><span class="lang-en">LinkedIn automation extension</span></strong>
               <p>
-                Naršyklės plėtinys, automatizuojantis veiksmus (saugiai, su “human-like” tempu),
-                su UI, būsenų valdymu ir darbo eigos scenarijais.
+                <span class="lang-lt">
+                  Naršyklės plėtinys, automatizuojantis veiksmus (saugiai, su “human-like” tempu),
+                  su UI, būsenų valdymu ir darbo eigos scenarijais.
+                </span>
+                <span class="lang-en">
+                  A browser extension that automates actions (safely, with human-like pacing),
+                  featuring UI, state management, and workflow scenarios.
+                </span>
               </p>
               <div class="meta">
                 <span class="tag">Chrome extension</span>
                 <span class="tag">UI/UX</span>
-                <span class="tag">Automatika</span>
+                <span class="tag"><span class="lang-lt">Automatika</span><span class="lang-en">Automation</span></span>
               </div>
             </div>
           </div>
 
           <div class="col-6">
             <div class="project">
-              <strong>Automobilių serviso valdymo sistema</strong>
+              <strong><span class="lang-lt">Automobilių serviso valdymo sistema</span><span class="lang-en">Car service management system</span></strong>
               <p>
-                Servisų architektūra su Go, pranešimų brokeriu, šablonais UI pusėje ir lengva DB (SQLite).
-                Tikslas — greita, praktiška sistema realiam darbui.
+                <span class="lang-lt">
+                  Servisų architektūra su Go, pranešimų brokeriu, šablonais UI pusėje ir lengva DB (SQLite).
+                  Tikslas — greita, praktiška sistema realiam darbui.
+                </span>
+                <span class="lang-en">
+                  Service architecture with Go, a message broker, templating on the UI side, and a lightweight DB (SQLite).
+                  Goal: a fast, practical system for real operations.
+                </span>
               </p>
               <div class="meta">
                 <span class="tag">Go</span>
@@ -426,10 +524,16 @@
 
           <div class="col-6">
             <div class="project">
-              <strong>Namų duomenys / sensorika</strong>
+              <strong><span class="lang-lt">Namų duomenys / sensorika</span><span class="lang-en">Home data / sensors</span></strong>
               <p>
-                Drėgmė, temperatūra, slėgis, rasos taškas, Wi-Fi siuntimas (ESP moduliai),
-                tikslas — suprasti sąlygas ir priimti sprendimus (pvz. pelėsio prevencija).
+                <span class="lang-lt">
+                  Drėgmė, temperatūra, slėgis, rasos taškas, Wi-Fi siuntimas (ESP moduliai),
+                  tikslas — suprasti sąlygas ir priimti sprendimus (pvz. pelėsio prevencija).
+                </span>
+                <span class="lang-en">
+                  Humidity, temperature, pressure, dew point, Wi-Fi reporting (ESP modules),
+                  aiming to understand conditions and make decisions (e.g., mold prevention).
+                </span>
               </p>
               <div class="meta">
                 <span class="tag">ESP8266</span>
@@ -442,7 +546,8 @@
 
         <div class="sep"></div>
         <p class="section-desc" style="margin:0">
-          Patarimas: jei turi GitHub / demo URL — įdėk čia mygtukus “Demo” ir “Repo”.
+          <span class="lang-lt">Patarimas: jei turi GitHub / demo URL — įdėk čia mygtukus “Demo” ir “Repo”.</span>
+          <span class="lang-en">Tip: if you have GitHub / demo URLs — add “Demo” and “Repo” buttons here.</span>
         </p>
       </div>
     </section>
@@ -450,28 +555,37 @@
     <section id="pomegiai" class="anchor">
       <div class="grid">
         <div class="card section-card col-6">
-          <h2 class="section-title">Pomėgiai</h2>
-          <p class="section-desc">Ne vien IT — mane įkrauna praktiški ir “rankomis” daromi dalykai.</p>
+          <h2 class="section-title"><span class="lang-lt">Pomėgiai</span><span class="lang-en">Beyond work</span></h2>
+          <p class="section-desc">
+            <span class="lang-lt">Ne vien IT — mane įkrauna praktiški ir “rankomis” daromi dalykai.</span>
+            <span class="lang-en">Not only IT — I’m energized by practical, hands-on projects.</span>
+          </p>
           <ul class="list">
-            <li>Elektronika / prototipai (inverteriai, MOSFET’ai, matavimai).</li>
-            <li>Namų optimizacija (energija, duomenys, automatika).</li>
-            <li>Gintaro paieškos po audrų prie Baltijos.</li>
-            <li>Akvariumas (žuvelės, krevetės).</li>
-            <li>Naminis jogurtas.</li>
+            <li><span class="lang-lt">Elektronika / prototipai (inverteriai, MOSFET’ai, matavimai).</span><span class="lang-en">Electronics / prototyping (inverters, MOSFETs, measurements).</span></li>
+            <li><span class="lang-lt">Namų optimizacija (energija, duomenys, automatika).</span><span class="lang-en">Home optimization (energy, data, automation).</span></li>
+            <li><span class="lang-lt">Gintaro paieškos po audrų prie Baltijos.</span><span class="lang-en">Amber hunting after Baltic storms.</span></li>
+            <li><span class="lang-lt">Akvariumas (žuvelės, krevetės).</span><span class="lang-en">Aquarium (fish, shrimp).</span></li>
+            <li><span class="lang-lt">Naminis jogurtas.</span><span class="lang-en">Homemade yogurt.</span></li>
           </ul>
         </div>
 
         <div class="card section-card col-6">
-          <h2 class="section-title">Kas mane motyvuoja</h2>
+          <h2 class="section-title"><span class="lang-lt">Kas mane motyvuoja</span><span class="lang-en">What motivates me</span></h2>
           <p class="section-desc">
-            Kai idėja tampa veikiančiu daiktu arba sistema, kuri realiai palengvina gyvenimą.
-            Ir kai sprendimas “turi stuburą”: aiškus dizainas, matavimai, paprastas palaikymas.
+            <span class="lang-lt">
+              Kai idėja tampa veikiančiu daiktu arba sistema, kuri realiai palengvina gyvenimą.
+              Ir kai sprendimas “turi stuburą”: aiškus dizainas, matavimai, paprastas palaikymas.
+            </span>
+            <span class="lang-en">
+              When an idea becomes a working thing or a system that genuinely reduces friction.
+              And when the solution has a backbone: clear design, measurements, and easy maintenance.
+            </span>
           </p>
           <div class="tagset">
-            <span class="tag">Praktiškumas</span>
-            <span class="tag">Matuojami rezultatai</span>
-            <span class="tag">Sistemų kūrimas</span>
-            <span class="tag">Iteracijos</span>
+            <span class="tag"><span class="lang-lt">Praktiškumas</span><span class="lang-en">Practicality</span></span>
+            <span class="tag"><span class="lang-lt">Matuojami rezultatai</span><span class="lang-en">Measurable outcomes</span></span>
+            <span class="tag"><span class="lang-lt">Sistemų kūrimas</span><span class="lang-en">Building systems</span></span>
+            <span class="tag"><span class="lang-lt">Iteracijos</span><span class="lang-en">Iterations</span></span>
           </div>
         </div>
       </div>
@@ -479,31 +593,36 @@
 
     <section id="kontaktai" class="anchor">
       <div class="card section-card">
-        <h2 class="section-title">Kontaktai</h2>
+        <h2 class="section-title"><span class="lang-lt">Kontaktai</span><span class="lang-en">Contact</span></h2>
         <p class="section-desc">
-          Čia palikau “placeholder’ius” — įrašyk savo realius kontaktus (email, LinkedIn, GitHub).
+          <span class="lang-lt">
+            Čia palikau “placeholder’ius” — įrašyk savo realius kontaktus (email, LinkedIn, GitHub).
+          </span>
+          <span class="lang-en">
+            Placeholders below — replace with your real contacts (email, LinkedIn, GitHub).
+          </span>
         </p>
 
         <div class="grid">
           <div class="col-4">
             <div class="mini">
-              <h3>Email</h3>
+              <h3><span class="lang-lt">Email</span><span class="lang-en">Email</span></h3>
               <p class="mono">laimonas@example.com</p>
-              <small>Pakeisk į realų</small>
+              <small><span class="lang-lt">Pakeisk į realų</span><span class="lang-en">Replace with real</span></small>
             </div>
           </div>
           <div class="col-4">
             <div class="mini">
               <h3>LinkedIn</h3>
               <p><a href="#" onclick="return false;">linkedin.com/in/...</a></p>
-              <small>Pakeisk į realų</small>
+              <small><span class="lang-lt">Pakeisk į realų</span><span class="lang-en">Replace with real</span></small>
             </div>
           </div>
           <div class="col-4">
             <div class="mini">
               <h3>GitHub</h3>
               <p><a href="#" onclick="return false;">github.com/...</a></p>
-              <small>Pakeisk į realų</small>
+              <small><span class="lang-lt">Pakeisk į realų</span><span class="lang-en">Replace with real</span></small>
             </div>
           </div>
         </div>
@@ -521,24 +640,40 @@
 
     // Theme toggle (persists)
     const root = document.body;
-    const btn = document.getElementById("themeBtn");
-    const saved = localStorage.getItem("theme");
-    if (saved) root.setAttribute("data-theme", saved);
+    const themeBtn = document.getElementById("themeBtn");
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) root.setAttribute("data-theme", savedTheme);
 
     function toggleTheme(){
       const cur = root.getAttribute("data-theme") || "dark";
       const next = cur === "dark" ? "light" : "dark";
       root.setAttribute("data-theme", next);
       localStorage.setItem("theme", next);
-      btn.querySelector("span:last-child").textContent = next === "dark" ? "Dark" : "Light";
+    }
+    themeBtn.addEventListener("click", toggleTheme);
+
+    // Language toggle (persists)
+    const ltBtn = document.getElementById("ltBtn");
+    const enBtn = document.getElementById("enBtn");
+
+    const savedLang = localStorage.getItem("lang");
+    if (savedLang) root.setAttribute("data-lang", savedLang);
+
+    function setLang(lang){
+      root.setAttribute("data-lang", lang);
+      localStorage.setItem("lang", lang);
+      ltBtn.setAttribute("aria-pressed", String(lang === "lt"));
+      enBtn.setAttribute("aria-pressed", String(lang === "en"));
+      document.documentElement.setAttribute("lang", lang === "lt" ? "lt" : "en");
     }
 
-    btn.addEventListener("click", toggleTheme);
+    ltBtn.addEventListener("click", () => setLang("lt"));
+    enBtn.addEventListener("click", () => setLang("en"));
 
-    // Set initial label
+    // Init button states
     (function init(){
-      const cur = root.getAttribute("data-theme") || "dark";
-      btn.querySelector("span:last-child").textContent = cur === "dark" ? "Dark" : "Light";
+      const curLang = root.getAttribute("data-lang") || "lt";
+      setLang(curLang);
     })();
   </script>
 </body>
